@@ -1,8 +1,15 @@
+import React from "react";
+import Toolbar from "./Components/Toolbar";
+import Navbar from "./Components/Navbar";
+import HeroSlider from "./Components/HeroSlider";
+
 function App() {
   return (
-    <>
-      <h1>Hello World</h1>
-    </>
+    <div className="min-h-screen bg-white">
+      <Toolbar />
+      <Navbar />
+      <HeroSlider />
+    </div>
   );
 }
 
