@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Lenis from "@studio-freight/lenis";
 
 import Toolbar from "./Components/Toolbar";
@@ -6,8 +7,12 @@ import Navbar from "./Components/Navbar";
 import HeroSlider from "./Components/HeroSlider";
 import WhoWeAre from "./Components/WhoWeAre";
 import OurVision from "./Components/OurVision";
+import ProductSlider from "./Components/ProductSlider";
+import CompanyVideo from "./Components/CompanyVideo";
+import HayatiQuokkaPro from "./pages/HayatiQuokkaPro";
 
-function App() {
+// Main Home Page Component
+const HomePage = () => {
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -33,11 +38,24 @@ function App() {
       <Toolbar />
       <Navbar />
       <HeroSlider />
+      <CompanyVideo />
       <WhoWeAre />
       <HeroSlider />
       <WhoWeAre />
       <OurVision />
+      <ProductSlider />
     </div>
+  );
+};
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/HayatiQuokkaPro" element={<HayatiQuokkaPro />} />
+      </Routes>
+    </Router>
   );
 }
 
