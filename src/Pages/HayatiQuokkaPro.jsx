@@ -5,17 +5,16 @@ import Navbar from "../Components/Navbar";
 import ProductHero from "../Components/Products/ProductHero";
 import ProductHeading from "../Components/Products/ProductHeading";
 import ProductFeaturesSection from "../Components/Products/ProductFeaturesSection";
+import ProductColorSlider from "../Components/Products/ProductColorSlider";
+import ProductBiggerBattery from "../Components/Products/ProductBiggerBattery";
+import ProductCompatibility from "../Components/Products/ProductCompatibility";
+import ProductSpecifications from "../Components/Products/ProductSpecifications";
 import ProductFeatures from "../Components/Products/ProductFeatures";
 import ProductBackground from "../Components/Products/ProductBackground";
 
 const HayatiQuokkaPro = () => {
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smooth: true,
-      smoothTouch: true,
-    });
+    const lenis = new Lenis();
 
     function raf(time) {
       lenis.raf(time);
@@ -25,7 +24,7 @@ const HayatiQuokkaPro = () => {
     requestAnimationFrame(raf);
 
     return () => {
-      lenis.destroy(); // Clean up on unmount
+      lenis.destroy();
     };
   }, []);
 
@@ -38,8 +37,11 @@ const HayatiQuokkaPro = () => {
         <ProductHero />
         <ProductHeading />
         <ProductFeaturesSection />
+        <ProductColorSlider />
+        <ProductBiggerBattery />
+        <ProductCompatibility />
+        <ProductSpecifications />
         <ProductFeatures />
-        {/* Additional sections will be added here */}
       </div>
     </div>
   );
