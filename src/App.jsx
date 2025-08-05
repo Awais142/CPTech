@@ -10,6 +10,7 @@ import OurVision from "./Components/OurVision";
 import ProductSlider from "./Components/ProductSlider";
 import CompanyVideo from "./Components/CompanyVideo";
 import HayatiQuokkaPro from "./pages/HayatiQuokkaPro";
+import AgeVerifier from "./Components/AgeVerifier";
 
 // Main Home Page Component
 const HomePage = () => {
@@ -51,6 +52,7 @@ const HomePage = () => {
 function App() {
   return (
     <Router>
+      <AgeVerifier />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/HayatiQuokkaPro" element={<HayatiQuokkaPro />} />
