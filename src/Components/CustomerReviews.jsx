@@ -4,30 +4,30 @@ const CustomerReviews = () => {
   const reviews = [
     {
       id: 1,
-      name: "@GrimmGreen",
-      comment: "OXVA Xlim Pro and Pro SQ are goooooooooooooooooooooooood!",
+      name: "@Vaping 101",
+      comment:
+        "Wow! Fast auto-draw response and versatile DTL to MTL performance",
       avatar:
         "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
     },
     {
       id: 2,
-      name: "@Matt From SMM",
-      comment:
-        "Excellent flavor and an easy-to-use menu for a smooth experience.",
+      name: "@Vaping With Vic",
+      comment: "Great flavor with similar quality to disposables from XLIM GO",
       avatar:
         "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
     },
     {
       id: 3,
-      name: "@El Mono Vapeador",
-      comment: "Very nice! 1600mAh battery with excellent vapor production",
+      name: "@GrimmGreen",
+      comment: "OXVA Xlim Pro and Pro SQ are goooooooooooooooooooooooood!",
       avatar:
         "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face",
     },
     {
       id: 4,
-      name: "@SAINT SKINNY",
-      comment: "Stylish design with unique color gradients and patterns",
+      name: "@Matt From SMM",
+      comment: "Excellent flavor and an easy-to-use for a smooth experience.",
       avatar:
         "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face",
     },
@@ -49,15 +49,15 @@ const CustomerReviews = () => {
     },
     {
       id: 7,
-      name: "@VapeMaster",
-      comment: "Incredible battery life and smooth airflow control",
+      name: "@FV Vape Show",
+      comment: "XLIM SE's superior flavor and airflow control",
       avatar:
         "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop&crop=face",
     },
     {
       id: 8,
-      name: "@CloudChaser",
-      comment: "Best flavor production I've experienced in a pod system",
+      name: "@VapeMaster",
+      comment: "Incredible battery life and smooth airflow control",
       avatar:
         "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
     },
@@ -74,65 +74,51 @@ const CustomerReviews = () => {
         </div>
 
         {/* First Row - Moving Left */}
-        <div className="mb-8">
-          <div className="flex animate-scroll-left">
-            {/* Duplicate reviews for seamless loop */}
-            {[...reviews, ...reviews].map((review, index) => (
-              <div
-                key={`row1-${index}`}
-                className="flex-shrink-0 w-80 md:w-96 mx-4 bg-gray-800 rounded-xl p-6 shadow-lg"
-              >
-                <div className="flex flex-col items-center text-center space-y-4">
-                  <div className="flex-shrink-0">
-                    <img
-                      src={review.avatar}
-                      alt={review.name}
-                      className="w-12 h-12 rounded-full object-cover"
-                    />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-white font-semibold text-sm mb-2">
-                      {review.name}
-                    </p>
-                    <p className="text-gray-300 text-sm leading-relaxed">
-                      "{review.comment}"
-                    </p>
-                  </div>
-                </div>
+        <div className="flex animate-scroll-left mb-6 -ml-4">
+          {[...reviews, ...reviews].map((review, index) => (
+            <div
+              key={`row1-${index}`}
+              className="flex-shrink-0 w-80 md:w-96 mx-4 bg-[#1E1E1E] hover:bg-[#2C2C2C] rounded-lg py-4 px-5 shadow-md cursor-pointer transition-all duration-300 ease-in-out flex items-center"
+            >
+              <img
+                src={review.avatar}
+                alt={review.name}
+                className="w-12 h-12 rounded-full object-cover mr-4"
+              />
+              <div>
+                <p className="text-white font-semibold text-sm">
+                  @{review.name}
+                </p>
+                <p className="text-gray-300 text-sm mt-1 leading-snug">
+                  "{review.comment}"
+                </p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
 
         {/* Second Row - Moving Right */}
-        <div>
-          <div className="flex animate-scroll-right">
-            {/* Duplicate reviews for seamless loop */}
-            {[...reviews, ...reviews].map((review, index) => (
-              <div
-                key={`row2-${index}`}
-                className="flex-shrink-0 w-80 md:w-96 mx-4 bg-gray-800 rounded-xl p-6 shadow-lg"
-              >
-                <div className="flex flex-col items-center text-center space-y-4">
-                  <div className="flex-shrink-0">
-                    <img
-                      src={review.avatar}
-                      alt={review.name}
-                      className="w-12 h-12 rounded-full object-cover"
-                    />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-white font-semibold text-sm mb-2">
-                      {review.name}
-                    </p>
-                    <p className="text-gray-300 text-sm leading-relaxed">
-                      "{review.comment}"
-                    </p>
-                  </div>
-                </div>
+        <div className="flex animate-scroll-right">
+          {[...reviews, ...reviews].map((review, index) => (
+            <div
+              key={`row2-${index}`}
+              className="flex-shrink-0 w-80 md:w-96 mx-4 bg-[#1E1E1E] hover:bg-[#2C2C2C] rounded-lg py-4 px-5 shadow-md cursor-pointer transition-all duration-300 ease-in-out flex items-center"
+            >
+              <img
+                src={review.avatar}
+                alt={review.name}
+                className="w-12 h-12 rounded-full object-cover mr-4"
+              />
+              <div>
+                <p className="text-white font-semibold text-sm">
+                  @{review.name}
+                </p>
+                <p className="text-gray-300 text-sm mt-1 leading-snug">
+                  "{review.comment}"
+                </p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
