@@ -9,6 +9,7 @@ import WhoWeAre from "./Components/WhoWeAre";
 import OurVision from "./Components/OurVision";
 import ProductSlider from "./Components/ProductSlider";
 import CompanyVideo from "./Components/CompanyVideo";
+import CustomerReviews from "./Components/CustomerReviews";
 import HayatiQuokkaPro from "./pages/HayatiQuokkaPro";
 import AgeVerifier from "./Components/AgeVerifier";
 
@@ -41,8 +42,7 @@ const HomePage = () => {
       <HeroSlider />
       <CompanyVideo />
       <WhoWeAre />
-      <HeroSlider />
-      <WhoWeAre />
+      <CustomerReviews />
       <OurVision />
       <ProductSlider />
     </div>
