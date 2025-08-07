@@ -2,9 +2,11 @@
 
 import { useEffect, useState, useRef } from "react";
 
+import brandVideo from "../assets/brand_video.mp4";
+
 export default function MultiStageHero({
   heading = "CP TECH",
-  videoSrc = "https://videos.pexels.com/video-files/6166866/6166866-uhd_2560_1440_25fps.mp4", // Using the provided video URL
+  videoSrc = brandVideo, // Properly imported video
   posterSrc = "/generic-video-poster.png",
   texts = [
     "LOST MARY strives to break free from",
