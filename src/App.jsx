@@ -12,6 +12,8 @@ import CompanyVideo from "./Components/CompanyVideo";
 import CustomerReviews from "./Components/CustomerReviews";
 import HayatiQuokkaPro from "./pages/HayatiQuokkaPro";
 import AgeVerifier from "./Components/AgeVerifier";
+import ParallexVideoSection from "./Components/ParallexVideoSection";
+import VideoSlider from "./Components/VideoSlider";
 
 // Main Home Page Component
 const HomePage = () => {
@@ -42,6 +44,8 @@ const HomePage = () => {
       <HeroSlider />
       <CompanyVideo />
       <WhoWeAre />
+      <VideoSlider />
+      <ParallexVideoSection />
       <CustomerReviews />
       <OurVision />
       <ProductSlider />

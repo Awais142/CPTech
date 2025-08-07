@@ -10,7 +10,6 @@ import ProductBiggerBattery from "../Components/Products/ProductBiggerBattery";
 import ProductCompatibility from "../Components/Products/ProductCompatibility";
 import ProductSpecifications from "../Components/Products/ProductSpecifications";
 import ProductWhatsInBox from "../Components/Products/ProductWhatsInBox";
-import ProductVideoSection from "../Components/Products/ProductVideoSection";
 import ProductFeatures from "../Components/Products/ProductFeatures";
 import ProductBackground from "../Components/Products/ProductBackground";
 
@@ -44,7 +43,6 @@ const HayatiQuokkaPro = () => {
         <ProductCompatibility />
         <ProductSpecifications />
         <ProductWhatsInBox />
-        <ProductVideoSection />
         <ProductFeatures />
       </div>
     </div>
