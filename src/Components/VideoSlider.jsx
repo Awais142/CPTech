@@ -4,27 +4,52 @@ import { motion, AnimatePresence } from "framer-motion";
 const VideoSlider = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Royalty-free sample videos (Pexels)
+  // Videos + posters to match reference structure (autoplay-friendly, muted)
   const videos = [
     {
       id: 1,
-      videoUrl: "https://player.vimeo.com/external/449845264.sd.mp4?s=6e1c9f3d6c8a7c9f3d6c8a7c9f3d6c8a7c9f3d6c&profile_id=139&oauth2_token_id=57447761",
-      title: "Nature Waterfall",
+      title: "XLIM PRO 2 DNA Version",
+      cta: "Learn more >",
+      poster:
+        "https://cdn.shopify.com/s/files/1/0584/6709/0582/files/20250527-181020.png?v=1748340645",
+      videoUrl:
+        "https://cdn.shopify.com/videos/c/o/v/4dab659e59b2447687c77786bd689447.mp4",
     },
     {
       id: 2,
-      videoUrl: "https://player.vimeo.com/external/454986381.sd.mp4?s=2e8a7c9f3d6c8a7c9f3d6c8a7c9f3d6c8a7c9f3d&profile_id=139&oauth2_token_id=57447761",
-      title: "Mountain Sunset",
+      title: "XLIM SQ PRO 2",
+      cta: "Learn more >",
+      poster:
+        "https://cdn.shopify.com/s/files/1/0502/8033/3505/files/20250507-103438.jpg?v=1746585298",
+      videoUrl:
+        "https://cdn.shopify.com/videos/c/o/v/39cae2e08cc041a9b8fe63daa014a854.mp4",
     },
     {
       id: 3,
-      videoUrl: "https://player.vimeo.com/external/458779584.sd.mp4?s=6e1c9f3d6c8a7c9f3d6c8a7c9f3d6c8a7c9f3d6c&profile_id=139&oauth2_token_id=57447761",
-      title: "Forest Stream",
+      title: "NeXLIM",
+      cta: "Learn more >",
+      poster:
+        "https://cdn.shopify.com/s/files/1/0502/8033/3505/files/Nexlim.avif?v=1738995518",
+      videoUrl:
+        "https://cdn.shopify.com/videos/c/o/v/2a9ccd49c42340ce8e13afea50cd9eea.mp4",
     },
     {
       id: 4,
-      videoUrl: "https://player.vimeo.com/external/469332024.sd.mp4?s=6e1c9f3d6c8a7c9f3d6c8a7c9f3d6c8a7c9f3d6c&profile_id=139&oauth2_token_id=57447761",
-      title: "City Time Lapse",
+      title: "OXVA 5TH ANNIVERSARY",
+      cta: "Learn more >",
+      poster:
+        "https://cdn.shopify.com/s/files/1/0502/8033/3505/files/5TH.avif?v=1738995518",
+      videoUrl:
+        "https://cdn.shopify.com/videos/c/o/v/e617d3d452ef4433a76de4839c7f8f37.mp4",
+    },
+    {
+      id: 5,
+      title: "UNITECH 2.0",
+      cta: "Learn more >",
+      poster:
+        "https://cdn.shopify.com/s/files/1/0502/8033/3505/files/Unitech_2.0.avif?v=1738995518",
+      videoUrl:
+        "https://cdn.shopify.com/videos/c/o/v/59fe882d2be942c1b2f9eafd5cb5280c.mp4",
     },
   ];
 
@@ -36,87 +61,127 @@ const VideoSlider = () => {
     setActiveIndex((prev) => (prev - 1 + videos.length) % videos.length);
   };
 
+  // Layout math to mimic reference (3 visible equal slides with small gap)
+  const SLIDE_VW = 33; // each slide ~ one third of viewport width
+  const GAP_VW = 2; // gap between slides (vw)
+  const STEP_VW = SLIDE_VW + GAP_VW; // distance to move per slide
+  const CENTER_PAD_VW = 50 - SLIDE_VW / 2; // leading/trailing spacer to center first/last
+
   return (
-    <div className="relative w-full h-[70vh] max-h-[800px] overflow-hidden rounded-xl shadow-2xl bg-black">
+    <div className="relative w-full h-[68vh] max-h-[820px] overflow-hidden rounded-[18px] bg-[#0b0b0b] px-2 sm:px-6">
       {/* Slides container - horizontal carousel */}
-      <div className="flex h-full w-full items-center justify-center transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${activeIndex * 60}vw)` }}>
+      <div
+        className="flex h-full w-full items-center justify-center transition-transform duration-500 ease-in-out"
+        style={{
+          transform: `translateX(calc(-${
+            activeIndex * STEP_VW
+          }vw + ${CENTER_PAD_VW}vw))`,
+        }}
+      >
+        {/* Leading spacer so the first slide can be centered */}
+        <div
+          className="flex-shrink-0"
+          style={{ width: `calc(${CENTER_PAD_VW}vw)` }}
+        />
         {videos.map((video, idx) => {
           const isActive = idx === activeIndex;
-          const isPrev = idx === activeIndex - 1;
-          const isNext = idx === activeIndex + 1;
           return (
             <div
               key={video.id}
-              className={`mx-4 flex-shrink-0 rounded-2xl overflow-hidden transition-all duration-500 border
-                ${isActive ? 'w-[64vw] h-[64vh] scale-105 z-30 shadow-2xl border-4 border-purple-400 bg-black' :
-                  'w-[26vw] h-[34vh] scale-90 z-10 opacity-40 border-2 border-gray-800 bg-[#181818]'}
-                ${isPrev || isNext ? 'opacity-80' : 'opacity-30'}
-              `}
-              style={{ boxShadow: isActive ? '0 8px 32px 0 rgba(80,0,200,0.25)' : undefined }}
+              className={`relative flex-shrink-0 overflow-hidden transition-all duration-500 rounded-[18px] border bg-black/20`}
+              style={{
+                width: `calc(${SLIDE_VW}vw)`,
+                height: `calc(60vh)`,
+                marginLeft: `calc(${GAP_VW / 2}vw)`,
+                marginRight: `calc(${GAP_VW / 2}vw)`,
+                opacity: isActive ? 1 : 0.85,
+                borderColor: "rgba(255,255,255,0.12)",
+              }}
             >
               <video
                 src={video.videoUrl}
+                poster={video.poster}
                 className="w-full h-full object-cover"
                 autoPlay
                 muted
                 loop
                 playsInline
-                preload="auto"
-                poster="https://dummyimage.com/600x800/222/fff.png&text=Video+Preview"
-                style={{ background: '#111' }}
+                preload="metadata"
               />
+              {/* Gradient and texts overlay */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/25 via-black/5 to-black/40" />
+              <div
+                className={`absolute top-6 left-1/2 -translate-x-1/2 text-center transition-opacity ${
+                  isActive ? "opacity-100" : "opacity-80"
+                }`}
+              >
+                <h3 className="text-white/95 font-extrabold tracking-tight text-lg sm:text-xl md:text-2xl drop-shadow-md whitespace-nowrap">
+                  {video.title}
+                </h3>
+                <p className="mt-1 text-white/85 text-xs md:text-sm font-semibold">
+                  {video.cta}
+                </p>
+              </div>
             </div>
           );
         })}
+        {/* Trailing spacer so the last slide can be centered */}
+        <div
+          className="flex-shrink-0"
+          style={{ width: `calc(${CENTER_PAD_VW}vw)` }}
+        />
       </div>
 
       {/* Navigation arrows */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black bg-opacity-30 hover:bg-opacity-50 flex items-center justify-center transition-all duration-300"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-40 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md flex items-center justify-center transition-all duration-300 border border-white/20"
+        aria-label="Previous"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
-          fill="currentColor"
-          className="w-6 h-6 text-white"
+          fill="none"
+          stroke="white"
+          strokeWidth="2"
+          className="w-6 h-6"
         >
           <path
-            fillRule="evenodd"
-            d="M7.72 12.53a.75.75 0 010-1.06l7.5-7.5a.75.75 0 111.06 1.06L9.31 12l6.97 6.97a.75.75 0 11-1.06 1.06l-7.5-7.5z"
-            clipRule="evenodd"
+            d="M15 18l-6-6 6-6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black bg-opacity-30 hover:bg-opacity-50 flex items-center justify-center transition-all duration-300"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-40 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md flex items-center justify-center transition-all duration-300 border border-white/20"
+        aria-label="Next"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
-          fill="currentColor"
-          className="w-6 h-6 text-white"
+          fill="none"
+          stroke="white"
+          strokeWidth="2"
+          className="w-6 h-6"
         >
-          <path
-            fillRule="evenodd"
-            d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z"
-            clipRule="evenodd"
-          />
+          <path d="M9 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
 
       {/* Pagination dots */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2 z-20">
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2 z-40">
         {videos.map((_, index) => (
           <button
             key={index}
             onClick={() => setActiveIndex(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+            className={`h-2 rounded-full transition-all duration-300 ${
               index === activeIndex
                 ? "bg-white w-6"
-                : "bg-white bg-opacity-50 hover:bg-opacity-70"
+                : "bg-white/50 w-2 hover:bg-white/70"
             }`}
+            aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>

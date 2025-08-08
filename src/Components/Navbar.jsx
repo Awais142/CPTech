@@ -1,12 +1,6 @@
 // src/components/Navbar.jsx
 import React, { useState, useEffect } from "react";
-import {
-  FaSearch,
-  FaUser,
-  FaShoppingCart,
-  FaBars,
-  FaTimes,
-} from "react-icons/fa";
+import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
 
 const navLinks = [
   { label: "Product", dropdown: true },
@@ -14,7 +8,7 @@ const navLinks = [
   { label: "Verify Product" },
   { label: "Media Packs" },
   { label: "Moment" },
-  { label: "What's Hayati®" },
+  { label: "What's CP Tech" },
   { label: "Support", dropdown: true },
 ];
 
@@ -36,20 +30,15 @@ const Navbar = () => {
     <nav
       className={`sticky top-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "backdrop-blur-md bg-white/10 border-b border-white/20 shadow-2xl"
-          : "bg-gradient-to-br from-[#5b0eb0] to-[#1f63db]"
+          ? "backdrop-blur-md bg-black/20 border-b border-white/10 shadow-2xl"
+          : "bg-gradient-to-b from-[#0b0b0b] via-[#0e0e0e] to-[#151515]"
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-        {/* Logo */}
+        {/* Brand */}
         <div className="flex items-center gap-3">
-          <img
-            src="/logo.png"
-            alt="Logo"
-            className="h-10 w-10 drop-shadow-lg"
-          />
-          <span className="font-extrabold text-2xl tracking-widest drop-shadow text-white">
-            HAYATI
+          <span className="font-extrabold text-2xl tracking-widest text-white">
+            CP TECH
           </span>
         </div>
 
@@ -58,16 +47,16 @@ const Navbar = () => {
           {navLinks.map((link, idx) => (
             <li
               key={idx}
-              className="relative group cursor-pointer hover:text-cyan-200 transition-colors duration-300"
+              className="relative group cursor-pointer hover:text-gray-200 transition-colors duration-300 text-white/90"
             >
               {link.label}
-              {link.dropdown && <span className="ml-1 text-xs">▼</span>}
+              {/* Dropdown kept but without arrow icon */}
               {link.dropdown && (
-                <div className="absolute left-0 top-8 hidden group-hover:block backdrop-blur-md bg-white/20 border border-white/30 rounded-lg shadow-2xl min-w-[120px] py-2 px-3 text-sm font-normal text-white">
-                  <span className="block py-1 px-2 hover:bg-white/20 rounded transition-colors duration-200">
+                <div className="absolute left-0 top-8 hidden group-hover:block backdrop-blur-md bg-black/30 border border-white/10 rounded-lg shadow-2xl min-w-[160px] py-2 px-3 text-sm font-normal text-white">
+                  <span className="block py-1 px-2 hover:bg-white/10 rounded transition-colors duration-200">
                     Option 1
                   </span>
-                  <span className="block py-1 px-2 hover:bg-white/20 rounded transition-colors duration-200">
+                  <span className="block py-1 px-2 hover:bg-white/10 rounded transition-colors duration-200">
                     Option 2
                   </span>
                 </div>
@@ -76,19 +65,16 @@ const Navbar = () => {
           ))}
         </ul>
 
-        {/* Icons + Mobile Toggle */}
+        {/* Actions + Mobile Toggle */}
         <div className="flex items-center gap-4 text-xl">
-          <button className="hover:text-cyan-200 transition-colors duration-300 p-2 rounded-full hover:bg-white/10">
+          <button className="text-white/90 hover:text-white transition-colors duration-300 p-2 rounded-full hover:bg-white/10">
             <FaSearch />
           </button>
-          <button className="hover:text-cyan-200 transition-colors duration-300 p-2 rounded-full hover:bg-white/10">
-            <FaUser />
-          </button>
-          <button className="hover:text-cyan-200 transition-colors duration-300 p-2 rounded-full hover:bg-white/10">
-            <FaShoppingCart />
+          <button className="hidden md:inline-flex items-center justify-center px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white text-sm font-semibold border border-white/15 transition-colors">
+            Book Now
           </button>
           <button
-            className="md:hidden ml-2 hover:text-cyan-200 transition-colors duration-300 p-2 rounded-full hover:bg-white/10"
+            className="md:hidden ml-2 text-white/90 hover:text-white transition-colors duration-300 p-2 rounded-full hover:bg-white/10"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
             {mobileOpen ? <FaTimes /> : <FaBars />}
@@ -99,23 +85,25 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {mobileOpen && (
         <div
-          className={`md:hidden px-6 pb-4 transition-all duration-500 ${
+          className={`md:hidden px-6 pb-5 transition-all duration-500 ${
             isScrolled
-              ? "backdrop-blur-md bg-white/10 border-t border-white/20"
-              : "bg-gradient-to-b from-[#5b0eb0] to-[#1f63db]"
+              ? "backdrop-blur-md bg-black/20 border-t border-white/10"
+              : "bg-[#0b0b0b]"
           }`}
         >
           <ul className="flex flex-col gap-4 text-lg font-semibold">
             {navLinks.map((link, idx) => (
               <li
                 key={idx}
-                className="cursor-pointer hover:text-cyan-200 transition-colors duration-300 py-2 px-3 rounded-lg hover:bg-white/10"
+                className="cursor-pointer text-white/90 hover:text-white transition-colors duration-300 py-2 px-3 rounded-lg hover:bg-white/10"
               >
                 {link.label}
-                {link.dropdown && <span className="ml-1 text-xs">▼</span>}
               </li>
             ))}
           </ul>
+          <button className="mt-4 w-full inline-flex items-center justify-center px-4 py-3 rounded-lg bg-white/10 hover:bg-white/20 text-white text-base font-semibold border border-white/15 transition-colors">
+            Book Now
+          </button>
         </div>
       )}
     </nav>
