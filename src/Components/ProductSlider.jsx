@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { BsStars } from "react-icons/bs";
 import img15k1 from "../assets/15K1.jpg";
 import img15k2 from "../assets/15K2.jpg";
 import img15k3 from "../assets/15K3.jpg";
@@ -87,11 +88,17 @@ const ProductSlider = () => {
   return (
     <section className="w-full overflow-x-hidden py-20 bg-gradient-to-b from-gray-50 to-blue-50 min-h-[520px] md:min-h-[700px] flex flex-col justify-center">
       <div className="w-full md:max-w-[90%] xl:max-w-[1400px] mx-auto px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800">
-            Hayati® Products
-          </h2>
-          <button className="text-blue-600 hover:text-blue-800 font-medium flex items-center gap-2 mx-auto group transition-all duration-300">
+        <div className="flex flex-col items-center justify-center mb-12 relative py-8">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-32 bg-gradient-to-r from-violet-200/20 via-cyan-200/20 to-violet-200/20 blur-3xl -z-10"></div>
+          <div className="flex items-center gap-3 mb-2">
+            <BsStars className="text-2xl md:text-3xl text-cyan-500 animate-pulse" />
+            <h2 className="text-4xl md:text-5xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-cyan-600 via-indigo-500 to-purple-600 relative tracking-wide leading-normal">
+              CP TECH Products
+            </h2>
+            <BsStars className="text-2xl md:text-3xl text-cyan-500 animate-pulse" />
+          </div>
+          <div className="h-1 w-24 bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-500 rounded-full mb-4"></div>
+          <button className="text-indigo-600 hover:text-purple-600 font-medium flex items-center gap-2 mx-auto group transition-all duration-300">
             Learn More{" "}
             <FaChevronRight className="inline-block group-hover:translate-x-1 transition-transform" />
           </button>
@@ -100,7 +107,7 @@ const ProductSlider = () => {
           {/* Left Arrow */}
           <button
             onClick={() => scroll("left")}
-            className="absolute -left-4 md:-left-8 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm shadow-xl p-4 rounded-full hover:bg-blue-50 transition-all duration-300 hidden md:flex items-center justify-center transform hover:scale-110"
+            className="absolute -left-4 md:-left-8 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm shadow-xl p-4 rounded-full hover:bg-blue-50 transition-all duration-300 hidden md:flex items-center justify-center transform hover:scale-110 cursor-pointer"
             aria-label="Scroll Left"
           >
             <FaChevronLeft className="text-2xl text-blue-600" />
@@ -143,7 +150,7 @@ const ProductSlider = () => {
           {/* Right Arrow */}
           <button
             onClick={() => scroll("right")}
-            className="absolute -right-4 md:-right-8 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm shadow-xl p-4 rounded-full hover:bg-blue-50 transition-all duration-300 hidden md:flex items-center justify-center transform hover:scale-110"
+            className="absolute -right-4 md:-right-8 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm shadow-xl p-4 rounded-full hover:bg-blue-50 transition-all duration-300 hidden md:flex items-center justify-center transform hover:scale-110 cursor-pointer"
             aria-label="Scroll Right"
           >
             <FaChevronRight className="text-2xl text-blue-600" />
