@@ -85,21 +85,22 @@ const ProductSlider = () => {
   };
 
   return (
-    <section className="w-full overflow-x-hidden py-16 bg-gray-50 min-h-[520px] md:min-h-[600px] flex flex-col justify-center">
-      <div className="w-full md:max-w-6xl mx-auto px-2 md:px-4">
-        <div className="flex flex-col items-center justify-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-2">
+    <section className="w-full overflow-x-hidden py-20 bg-gradient-to-b from-gray-50 to-blue-50 min-h-[520px] md:min-h-[700px] flex flex-col justify-center">
+      <div className="w-full md:max-w-[90%] xl:max-w-[1400px] mx-auto px-4 md:px-6">
+        <div className="flex flex-col items-center justify-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800">
             Hayati® Products
           </h2>
-          <button className="text-blue-600 hover:underline font-medium flex items-center gap-1 mx-auto">
-            Learn More <FaChevronRight className="inline-block" />
+          <button className="text-blue-600 hover:text-blue-800 font-medium flex items-center gap-2 mx-auto group transition-all duration-300">
+            Learn More{" "}
+            <FaChevronRight className="inline-block group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
         <div className="relative">
           {/* Left Arrow */}
           <button
             onClick={() => scroll("left")}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg p-2 rounded-full hover:bg-blue-100 transition hidden md:block"
+            className="absolute -left-4 md:-left-8 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm shadow-xl p-4 rounded-full hover:bg-blue-50 transition-all duration-300 hidden md:flex items-center justify-center transform hover:scale-110"
             aria-label="Scroll Left"
           >
             <FaChevronLeft className="text-2xl text-blue-600" />
@@ -108,25 +109,31 @@ const ProductSlider = () => {
           {/* Product Cards */}
           <div
             ref={sliderRef}
-            className="product-slider-scrollbar flex gap-4 md:gap-6 overflow-x-auto scroll-smooth px-2 md:px-8 py-4 snap-x snap-mandatory"
-            style={{ scrollBehavior: "smooth" }}
+            className="product-slider-scrollbar flex gap-6 md:gap-8 overflow-x-auto scroll-smooth px-4 md:px-12 py-8 snap-x snap-mandatory"
+            style={{
+              scrollBehavior: "smooth",
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            }}
           >
             {products.map((product, idx) => (
               <div
                 key={idx}
-                className="min-w-[170px] max-w-[200px] md:min-w-[280px] md:max-w-[320px] bg-white rounded-2xl shadow-lg p-3 md:p-7 flex flex-col items-center snap-center group relative hover:scale-105 transition-transform duration-300"
+                className="min-w-[200px] max-w-[240px] md:min-w-[300px] md:max-w-[340px] bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] p-4 md:p-8 flex flex-col items-center snap-center group relative hover:shadow-2xl hover:-translate-y-2 transition-all duration-500"
               >
                 {product.isNew && (
-                  <span className="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow animate-fade-in-up">
+                  <span className="absolute top-4 left-4 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg animate-fade-in-up">
                     NEW
                   </span>
                 )}
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-28 h-40 md:w-44 md:h-64 object-contain mb-4 drop-shadow-lg group-hover:scale-110 transition-transform duration-300"
-                />
-                <h3 className="text-base md:text-lg font-semibold text-gray-800 text-center mb-2">
+                <div className="relative w-full h-48 md:h-72 mb-6 overflow-hidden">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-full object-contain drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-gray-800 text-center mb-2 group-hover:text-blue-600 transition-colors">
                   {product.name}
                 </h3>
               </div>
@@ -136,7 +143,7 @@ const ProductSlider = () => {
           {/* Right Arrow */}
           <button
             onClick={() => scroll("right")}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg p-2 rounded-full hover:bg-blue-100 transition hidden md:block"
+            className="absolute -right-4 md:-right-8 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm shadow-xl p-4 rounded-full hover:bg-blue-50 transition-all duration-300 hidden md:flex items-center justify-center transform hover:scale-110"
             aria-label="Scroll Right"
           >
             <FaChevronRight className="text-2xl text-blue-600" />
