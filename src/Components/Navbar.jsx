@@ -1,13 +1,34 @@
 // src/components/Navbar.jsx
 import React, { useState, useEffect } from "react";
-import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
+import { FaSearch, FaBars, FaTimes, FaChevronRight } from "react-icons/fa";
+
+// Import product images
+const products = [
+  {
+    name: "Hayati® Quokka Pro",
+    image: "/quokka-pro.png", // You'll need to add these images to your public folder
+    isNew: true,
+  },
+  {
+    name: "Hayati® Quokka Elite",
+    image: "/quokka-elite.png",
+    isNew: true,
+  },
+  {
+    name: "Hayati® Quokka Lite",
+    image: "/quokka-lite.png",
+    isNew: true,
+  },
+  {
+    name: "Hayati® Quokka Pod",
+    image: "/quokka-pod.png",
+    isNew: true,
+  },
+];
 
 const navLinks = [
   { label: "Product", dropdown: true },
   { label: "Our Brand", dropdown: true },
-  { label: "Verify Product" },
-  { label: "Media Packs" },
-  { label: "Moment" },
   { label: "What's CP Tech" },
   { label: "Support", dropdown: true },
 ];
@@ -51,7 +72,39 @@ const Navbar = () => {
             >
               {link.label}
               {/* Dropdown kept but without arrow icon */}
-              {link.dropdown && (
+              {link.dropdown && link.label === "Product" && (
+                <div className="absolute left-0 top-8 hidden group-hover:block backdrop-blur-md bg-white/95 border border-gray-200 rounded-xl shadow-2xl min-w-[700px] py-6 px-6 text-sm font-normal">
+                  <div className="grid grid-cols-4 gap-6">
+                    {products.map((product, idx) => (
+                      <div key={idx} className="group/item cursor-pointer">
+                        <div className="relative overflow-hidden rounded-lg bg-gray-100 p-4 transition-all duration-300 hover:shadow-md">
+                          {product.isNew && (
+                            <span className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                              NEW
+                            </span>
+                          )}
+                          <img
+                            src={product.image}
+                            alt={product.name}
+                            className="w-full h-32 object-contain mb-3 transform transition-transform duration-300 group-hover/item:scale-105"
+                          />
+                          <div className="text-center">
+                            <h3 className="text-gray-800 font-medium text-sm">
+                              {product.name}
+                            </h3>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-6 text-center">
+                    <button className="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors">
+                      View All Products <FaChevronRight className="text-xs" />
+                    </button>
+                  </div>
+                </div>
+              )}
+              {link.dropdown && link.label !== "Product" && (
                 <div className="absolute left-0 top-8 hidden group-hover:block backdrop-blur-md bg-black/30 border border-white/10 rounded-lg shadow-2xl min-w-[160px] py-2 px-3 text-sm font-normal text-white">
                   <span className="block py-1 px-2 hover:bg-white/10 rounded transition-colors duration-200">
                     Option 1
