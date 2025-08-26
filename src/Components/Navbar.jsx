@@ -5,22 +5,22 @@ import { FaSearch, FaBars, FaTimes, FaChevronRight } from "react-icons/fa";
 // Import product images
 const products = [
   {
-    name: "Hayati® Quokka Pro",
+    name: "CP 10K",
     image: "/quokka-pro.png", // You'll need to add these images to your public folder
     isNew: true,
   },
   {
-    name: "Hayati® Quokka Elite",
+    name: "CP 25K",
     image: "/quokka-elite.png",
     isNew: true,
   },
   {
-    name: "Hayati® Quokka Lite",
+    name: "CP 50K",
     image: "/quokka-lite.png",
     isNew: true,
   },
   {
-    name: "Hayati® Quokka Pod",
+    name: "CP 75K",
     image: "/quokka-pod.png",
     isNew: true,
   },

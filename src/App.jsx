@@ -10,7 +10,7 @@ import OurVision from "./Components/OurVision";
 import ProductSlider from "./Components/ProductSlider";
 import CompanyVideo from "./Components/CompanyVideo";
 import CustomerReviews from "./Components/CustomerReviews";
-import HayatiQuokkaPro from "./pages/HayatiQuokkaPro";
+import HayatiQuokkaPro from "./Pages/HayatiQuokkaPro";
 import AgeVerifier from "./Components/AgeVerifier";
 import ParallexVideoSection from "./Components/ParallexVideoSection";
 import VideoSlider from "./Components/VideoSlider";
