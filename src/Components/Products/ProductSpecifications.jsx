@@ -1,8 +1,8 @@
 import React from "react";
 
-// Import images
-import specificationsWeb from "../../assets/product-images/first-product-images/specificationsweb.png";
-import specificationsMobile from "../../assets/product-images/first-product-images/specificationsmobile.png";
+// Using public directory paths
+const specificationsWeb = "/images/specificationsweb.png";
+const specificationsMobile = "/images/specificationsmobile.png";
 
 const ProductSpecifications = () => {
   return (
