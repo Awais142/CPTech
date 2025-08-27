@@ -15,6 +15,7 @@ import CPTwist from "./Pages/CPTwist";
 import AgeVerifier from "./Components/AgeVerifier";
 import ParallexVideoSection from "./Components/ParallexVideoSection";
 import VideoSlider from "./Components/VideoSlider";
+import ContactUs from "./Pages/ContactUs";
 
 // Main Home Page Component
 const HomePage = () => {
@@ -61,6 +62,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/CP15k" element={<CPFifteenK />} />
         <Route path="/CPTwist" element={<CPTwist />} />
+        <Route path="/contact" element={<ContactUs />} />
       </Routes>
       <GoToTop />
     </Router>
