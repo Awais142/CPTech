@@ -1,28 +1,33 @@
 // src/components/Navbar.jsx
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { FaSearch, FaBars, FaTimes, FaChevronRight } from "react-icons/fa";
 
 // Import product images
 const products = [
   {
-    name: "CP 10K",
-    image: "/quokka-pro.png", // You'll need to add these images to your public folder
+    name: "CP 15K Pro",
+    image: "/images/15k1.png",
     isNew: true,
+    link: "/CP15k",
   },
   {
-    name: "CP 25K",
-    image: "/quokka-elite.png",
+    name: "CP 15K Elite",
+    image: "/images/15k2.png",
     isNew: true,
+    link: "/CP15k",
   },
   {
-    name: "CP 50K",
-    image: "/quokka-lite.png",
+    name: "CP Twist Pro",
+    image: "/images/twist1.png",
     isNew: true,
+    link: "/CPTwist",
   },
   {
-    name: "CP 75K",
-    image: "/quokka-pod.png",
+    name: "CP Twist Elite",
+    image: "/images/twist2.png",
     isNew: true,
+    link: "/CPTwist",
   },
 ];
 
@@ -73,45 +78,58 @@ const Navbar = () => {
               {link.label}
               {/* Dropdown kept but without arrow icon */}
               {link.dropdown && link.label === "Product" && (
-                <div className="absolute left-0 top-8 hidden group-hover:block backdrop-blur-md bg-white/95 border border-gray-200 rounded-xl shadow-2xl min-w-[700px] py-6 px-6 text-sm font-normal">
-                  <div className="grid grid-cols-4 gap-6">
-                    {products.map((product, idx) => (
-                      <div key={idx} className="group/item cursor-pointer">
-                        <div className="relative overflow-hidden rounded-lg bg-gray-100 p-4 transition-all duration-300 hover:shadow-md">
-                          {product.isNew && (
-                            <span className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-                              NEW
-                            </span>
-                          )}
-                          <img
-                            src={product.image}
-                            alt={product.name}
-                            className="w-full h-32 object-contain mb-3 transform transition-transform duration-300 group-hover/item:scale-105"
-                          />
-                          <div className="text-center">
-                            <h3 className="text-gray-800 font-medium text-sm">
-                              {product.name}
-                            </h3>
-                          </div>
-                        </div>
+                <>
+                  {/* Invisible bridge to prevent gap - extended height and better positioning */}
+                  <div className="absolute left-0 w-full h-4 top-full" />
+                  <div className="absolute left-0 top-full pt-4 hidden group-hover:block">
+                    <div className="backdrop-blur-md bg-white/95 border border-gray-200 rounded-xl shadow-2xl min-w-[700px] py-6 px-6 text-sm font-normal">
+                      <div className="grid grid-cols-4 gap-6">
+                        {products.map((product, idx) => (
+                          <Link
+                            to={product.link}
+                            key={idx}
+                            className="group/item cursor-pointer no-underline"
+                          >
+                            <div className="relative overflow-hidden rounded-lg bg-gray-100 p-4 transition-all duration-300 hover:shadow-md">
+                              {product.isNew && (
+                                <span className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                                  NEW
+                                </span>
+                              )}
+                              <img
+                                src={product.image}
+                                alt={product.name}
+                                className="w-full h-32 object-contain mb-3 transform transition-transform duration-300 group-hover/item:scale-105"
+                              />
+                              <div className="text-center">
+                                <h3 className="text-gray-800 font-medium text-sm">
+                                  {product.name}
+                                </h3>
+                              </div>
+                            </div>
+                          </Link>
+                        ))}
                       </div>
-                    ))}
+                      <div className="mt-6 text-center">
+                        <button className="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors">
+                          View All Products{" "}
+                          <FaChevronRight className="text-xs" />
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                  <div className="mt-6 text-center">
-                    <button className="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors">
-                      View All Products <FaChevronRight className="text-xs" />
-                    </button>
-                  </div>
-                </div>
+                </>
               )}
               {link.dropdown && link.label !== "Product" && (
-                <div className="absolute left-0 top-8 hidden group-hover:block backdrop-blur-md bg-black/30 border border-white/10 rounded-lg shadow-2xl min-w-[160px] py-2 px-3 text-sm font-normal text-white">
-                  <span className="block py-1 px-2 hover:bg-white/10 rounded transition-colors duration-200">
-                    Option 1
-                  </span>
-                  <span className="block py-1 px-2 hover:bg-white/10 rounded transition-colors duration-200">
-                    Option 2
-                  </span>
+                <div className="absolute left-0 top-full pt-2 hidden group-hover:block">
+                  <div className="backdrop-blur-md bg-black/30 border border-white/10 rounded-lg shadow-2xl min-w-[160px] py-2 px-3 text-sm font-normal text-white">
+                    <span className="block py-1 px-2 hover:bg-white/10 rounded transition-colors duration-200">
+                      Option 1
+                    </span>
+                    <span className="block py-1 px-2 hover:bg-white/10 rounded transition-colors duration-200">
+                      Option 2
+                    </span>
+                  </div>
                 </div>
               )}
             </li>

@@ -77,7 +77,11 @@ const ProductSlider = () => {
   const scroll = (direction) => {
     const { current } = sliderRef;
     if (current) {
-      const scrollAmount = current.offsetWidth * 0.7;
+      // Calculate scroll amount based on card width plus gap
+      const cardWidth = window.innerWidth >= 768 ? 340 : 240; // md breakpoint
+      const gap = window.innerWidth >= 768 ? 32 : 24; // gap-8 = 32px, gap-6 = 24px
+      const scrollAmount = cardWidth + gap;
+
       current.scrollBy({
         left: direction === "left" ? -scrollAmount : scrollAmount,
         behavior: "smooth",
@@ -103,57 +107,60 @@ const ProductSlider = () => {
             <FaChevronRight className="inline-block group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
-        <div className="relative">
-          {/* Left Arrow */}
+        {/* Navigation Container with buttons outside */}
+        <div className="relative flex items-center">
+          {/* Left Arrow - Completely outside */}
           <button
             onClick={() => scroll("left")}
-            className="absolute -left-4 md:-left-8 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm shadow-xl p-4 rounded-full hover:bg-blue-50 transition-all duration-300 hidden md:flex items-center justify-center transform hover:scale-110 cursor-pointer"
+            className="flex-shrink-0 bg-white/95 backdrop-blur-sm shadow-2xl p-3 md:p-4 rounded-full hover:bg-gradient-to-r hover:from-cyan-50 hover:to-purple-50 transition-all duration-300 transform hover:scale-110 cursor-pointer group border border-gray-200 z-30 mr-4"
             aria-label="Scroll Left"
           >
-            <FaChevronLeft className="text-2xl text-blue-600" />
+            <FaChevronLeft className="text-lg md:text-xl text-cyan-600 group-hover:text-purple-600 transition-colors duration-300" />
           </button>
 
-          {/* Product Cards */}
-          <div
-            ref={sliderRef}
-            className="product-slider-scrollbar flex gap-6 md:gap-8 overflow-x-auto scroll-smooth px-4 md:px-12 py-8 snap-x snap-mandatory"
-            style={{
-              scrollBehavior: "smooth",
-              scrollbarWidth: "none",
-              msOverflowStyle: "none",
-            }}
-          >
-            {products.map((product, idx) => (
-              <div
-                key={idx}
-                className="min-w-[200px] max-w-[240px] md:min-w-[300px] md:max-w-[340px] bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] p-4 md:p-8 flex flex-col items-center snap-center group relative hover:shadow-2xl hover:-translate-y-2 transition-all duration-500"
-              >
-                {product.isNew && (
-                  <span className="absolute top-4 left-4 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg animate-fade-in-up">
-                    NEW
-                  </span>
-                )}
-                <div className="relative w-full h-48 md:h-72 mb-6 overflow-hidden">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-contain drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
-                  />
+          {/* Product Cards Container */}
+          <div className="flex-1 relative overflow-hidden">
+            <div
+              ref={sliderRef}
+              className="product-slider-scrollbar flex gap-6 md:gap-8 overflow-x-auto scroll-smooth px-4 py-8 snap-x snap-mandatory"
+              style={{
+                scrollBehavior: "smooth",
+                scrollbarWidth: "none",
+                msOverflowStyle: "none",
+              }}
+            >
+              {products.map((product, idx) => (
+                <div
+                  key={idx}
+                  className="min-w-[200px] max-w-[240px] md:min-w-[300px] md:max-w-[340px] bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] p-4 md:p-8 flex flex-col items-center snap-center group relative hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 flex-shrink-0"
+                >
+                  {product.isNew && (
+                    <span className="absolute top-2 left-2 bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg z-20">
+                      NEW
+                    </span>
+                  )}
+                  <div className="relative w-full h-48 md:h-72 mb-6 overflow-hidden">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-contain drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
+                    />
+                  </div>
+                  <h3 className="text-lg md:text-xl font-bold text-gray-800 text-center mb-2 group-hover:text-blue-600 transition-colors">
+                    {product.name}
+                  </h3>
                 </div>
-                <h3 className="text-lg md:text-xl font-bold text-gray-800 text-center mb-2 group-hover:text-blue-600 transition-colors">
-                  {product.name}
-                </h3>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
-          {/* Right Arrow */}
+          {/* Right Arrow - Completely outside */}
           <button
             onClick={() => scroll("right")}
-            className="absolute -right-4 md:-right-8 top-1/2 -translate-y-1/2 z-10 bg-white/90 backdrop-blur-sm shadow-xl p-4 rounded-full hover:bg-blue-50 transition-all duration-300 hidden md:flex items-center justify-center transform hover:scale-110 cursor-pointer"
+            className="flex-shrink-0 bg-white/95 backdrop-blur-sm shadow-2xl p-3 md:p-4 rounded-full hover:bg-gradient-to-r hover:from-cyan-50 hover:to-purple-50 transition-all duration-300 transform hover:scale-110 cursor-pointer group border border-gray-200 z-30 ml-4"
             aria-label="Scroll Right"
           >
-            <FaChevronRight className="text-2xl text-blue-600" />
+            <FaChevronRight className="text-lg md:text-xl text-cyan-600 group-hover:text-purple-600 transition-colors duration-300" />
           </button>
         </div>
       </div>

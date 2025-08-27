@@ -13,7 +13,7 @@ import ProductWhatsInBox from "../Components/Products/ProductWhatsInBox";
 import ProductFeatures from "../Components/Products/ProductFeatures";
 import ProductBackground from "../Components/Products/ProductBackground";
 
-const HayatiQuokkaPro = () => {
+const CPTwist = () => {
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -49,4 +49,4 @@ const HayatiQuokkaPro = () => {
   );
 };
 
-export default HayatiQuokkaPro;
+export default CPTwist;
