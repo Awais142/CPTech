@@ -1,27 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { 
-  FaFacebookF, 
-  FaTwitter, 
-  FaInstagram, 
-  FaLinkedinIn, 
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedinIn,
   FaYoutube,
   FaMapMarkerAlt,
   FaPhone,
   FaEnvelope,
   FaChevronRight,
-  FaArrowUp
 } from "react-icons/fa";
 import { BsStars } from "react-icons/bs";
 
 const Footer = () => {
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  };
-
   const productLinks = [
     { name: "CP® 15K Pro", link: "/CP15k" },
     { name: "CP® 15K Elite", link: "/CP15k" },
@@ -63,7 +55,6 @@ const Footer = () => {
         {/* Main Footer Content */}
         <div className="max-w-7xl mx-auto px-6 py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-            
             {/* Company Brand Section */}
             <div className="lg:col-span-1">
               <div className="flex items-center gap-3 mb-6">
@@ -73,10 +64,11 @@ const Footer = () => {
                 </h2>
               </div>
               <p className="text-gray-300 mb-6 leading-relaxed">
-                Pioneering the future of vaping technology with innovative crystal pro devices. 
-                Experience premium quality, cutting-edge design, and exceptional performance.
+                Pioneering the future of vaping technology with innovative
+                crystal pro devices. Experience premium quality, cutting-edge
+                design, and exceptional performance.
               </p>
-              
+
               {/* Social Media Links */}
               <div className="flex gap-4">
                 {[
@@ -163,7 +155,9 @@ const Footer = () => {
               <div className="space-y-3">
                 <div className="flex items-start gap-3 text-gray-300">
                   <FaMapMarkerAlt className="text-cyan-400 mt-1 flex-shrink-0" />
-                  <span className="text-sm">123 Tech Street, Innovation City, TC 12345</span>
+                  <span className="text-sm">
+                    123 Tech Street, Innovation City, TC 12345
+                  </span>
                 </div>
                 <div className="flex items-center gap-3 text-gray-300">
                   <FaPhone className="text-cyan-400 flex-shrink-0" />
@@ -184,7 +178,8 @@ const Footer = () => {
                 Stay Updated with CP Tech
               </h3>
               <p className="text-gray-300 mb-6">
-                Be the first to know about new products, exclusive offers, and industry insights.
+                Be the first to know about new products, exclusive offers, and
+                industry insights.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
                 <input
@@ -204,10 +199,10 @@ const Footer = () => {
         <div className="border-t border-white/10">
           <div className="max-w-7xl mx-auto px-6 py-6">
             <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
-              
               {/* Copyright */}
               <div className="text-gray-400 text-sm text-center lg:text-left">
-                © 2024 CP Tech. All rights reserved. | Designed with innovation in mind.
+                © 2024 CP Tech. All rights reserved. | Designed with innovation
+                in mind.
               </div>
 
               {/* Legal Links */}
@@ -222,15 +217,6 @@ const Footer = () => {
                   </a>
                 ))}
               </div>
-
-              {/* Back to Top Button */}
-              <button
-                onClick={scrollToTop}
-                className="w-10 h-10 bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:shadow-lg"
-                aria-label="Back to top"
-              >
-                <FaArrowUp className="text-sm" />
-              </button>
             </div>
           </div>
         </div>

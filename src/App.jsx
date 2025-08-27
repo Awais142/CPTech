@@ -9,6 +9,7 @@ import ProductSlider from "./Components/ProductSlider";
 import CompanyVideo from "./Components/CompanyVideo";
 import CustomerReviews from "./Components/CustomerReviews";
 import Footer from "./Components/Footer";
+import GoToTop from "./Components/GoToTop";
 import CPFifteenK from "./Pages/CPFifteenK";
 import CPTwist from "./Pages/CPTwist";
 import AgeVerifier from "./Components/AgeVerifier";
@@ -61,6 +62,7 @@ function App() {
         <Route path="/CP15k" element={<CPFifteenK />} />
         <Route path="/CPTwist" element={<CPTwist />} />
       </Routes>
+      <GoToTop />
     </Router>
   );
 }
