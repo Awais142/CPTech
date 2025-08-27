@@ -62,14 +62,21 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
         {/* Brand */}
-        <div className="flex items-center gap-3">
-          <span className="font-extrabold text-2xl tracking-widest text-white">
-            CP TECH
-          </span>
-        </div>
+        <Link to="/" className="no-underline text-inherit">
+          <div className="flex items-center gap-3">
+            <span className="font-extrabold text-2xl tracking-widest text-white">
+              CP TECH
+            </span>
+          </div>
+        </Link>
 
         {/* Desktop Navigation */}
         <ul className="hidden md:flex items-center gap-8 text-base font-semibold">
+          <li className="relative group cursor-pointer hover:text-gray-200 transition-colors duration-300 text-white/90">
+            <Link to="/" className="no-underline text-inherit">
+              Home
+            </Link>
+          </li>
           {navLinks.map((link, idx) => (
             <li
               key={idx}
@@ -160,6 +167,11 @@ const Navbar = () => {
           }`}
         >
           <ul className="flex flex-col gap-4 text-lg font-semibold">
+            <li className="cursor-pointer text-white/90 hover:text-white transition-colors duration-300 py-2 px-3 rounded-lg hover:bg-white/10">
+              <Link to="/" className="no-underline text-inherit">
+                Home
+              </Link>
+            </li>
             {navLinks.map((link, idx) => (
               <li
                 key={idx}
