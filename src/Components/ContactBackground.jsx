@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const Blob = ({ style, animateProps }) => (
   <motion.div
-    className="absolute rounded-full filter blur-[120px] opacity-70"
+    className="absolute rounded-full filter blur-3xl opacity-50"
     style={style}
     animate={animateProps}
   />
@@ -14,11 +14,11 @@ const ContactBackground = () => {
     <div className="absolute inset-0 -z-10 overflow-hidden bg-white">
       <Blob
         style={{
-          width: "700px",
-          height: "700px",
-          top: "-250px",
-          left: "-300px",
-          background: "rgba(173, 216, 230, 0.6)", // Light Blue
+          width: "600px",
+          height: "600px",
+          top: "-200px",
+          left: "-250px",
+          background: "rgba(65, 201, 226, 0.5)", // Vibrant Cyan
         }}
         animateProps={{
           x: [0, 50, -30, 0],
@@ -35,11 +35,11 @@ const ContactBackground = () => {
       />
       <Blob
         style={{
-          width: "400px",
-          height: "400px",
-          bottom: "-100px",
-          right: "-150px",
-          background: "rgba(10, 120, 180, 0.5)",
+          width: "500px",
+          height: "500px",
+          bottom: "-150px",
+          right: "-200px",
+          background: "rgba(128, 90, 213, 0.5)", // Vibrant Purple
         }}
         animateProps={{
           x: [0, -40, 20, 0],
@@ -56,11 +56,11 @@ const ContactBackground = () => {
       />
        <Blob
         style={{
-          width: "300px",
-          height: "300px",
-          top: "20%",
-          right: "10%",
-          background: "rgba(150, 20, 80, 0.4)",
+          width: "450px",
+          height: "450px",
+          top: "15%",
+          right: "5%",
+          background: "rgba(255, 105, 180, 0.4)", // Vibrant Pink
         }}
         animateProps={{
           x: [0, 20, -20, 0],

@@ -5,6 +5,7 @@ import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import heroImg from "../assets/25kTwis1.jpg";
 import ContactBackground from "../Components/ContactBackground";
+import { FaLightbulb, FaShieldAlt, FaBriefcase } from "react-icons/fa";
 
 const ContactUs = () => {
   const [status, setStatus] = useState(null);
@@ -52,18 +53,18 @@ const ContactUs = () => {
                 Questions about products, support, or collaboration? Our team is ready
                 to assist. Share your details and we’ll reach back shortly.
               </p>
-              <ul className="space-y-2 text-gray-600 mb-8">
-                <li className="flex items-center gap-3">
-                  <span className="w-2 h-2 rounded-full bg-gray-400"></span>
-                  Expert guidance on CP 15K and Twist series
+              <ul className="space-y-4 text-gray-600 mb-8">
+                <li className="flex items-start gap-4">
+                  <FaLightbulb className="text-cyan-500 mt-1 flex-shrink-0" size={20} />
+                  <span>Expert guidance on CP 15K and Twist series</span>
                 </li>
-                <li className="flex items-center gap-3">
-                  <span className="w-2 h-2 rounded-full bg-gray-400"></span>
-                  Warranty and after-sales support
+                <li className="flex items-start gap-4">
+                  <FaShieldAlt className="text-purple-500 mt-1 flex-shrink-0" size={20} />
+                  <span>Warranty and after-sales support</span>
                 </li>
-                <li className="flex items-center gap-3">
-                  <span className="w-2 h-2 rounded-full bg-gray-400"></span>
-                  Business and distribution inquiries
+                <li className="flex items-start gap-4">
+                  <FaBriefcase className="text-pink-500 mt-1 flex-shrink-0" size={20} />
+                  <span>Business and distribution inquiries</span>
                 </li>
               </ul>
               <a
@@ -89,7 +90,7 @@ const ContactUs = () => {
 
         {/* Section 2: Contact form */}
         <section id="contact-form" className="max-w-7xl mx-auto px-6 pb-24">
-          <div className="bg-white/70 backdrop-blur-md border border-gray-200 rounded-2xl p-6 md:p-10 shadow-lg">
+          <div className="bg-white/60 backdrop-blur-xl border border-gray-200/50 rounded-3xl p-6 md:p-10 shadow-2xl">
             <h2 className="text-2xl md:text-3xl font-bold mb-2">Contact form</h2>
             <p className="text-gray-500 mb-8">
               Fill out the form and our team will get back to you.
