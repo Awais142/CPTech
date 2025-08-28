@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaSearch, FaBars, FaTimes, FaChevronRight } from "react-icons/fa";
+import lightLogo from "../assets/cp-light-logo.png";
 
 // Import product images
 const products = [
@@ -63,11 +64,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
         {/* Brand */}
         <Link to="/" className="no-underline text-inherit">
-          <div className="flex items-center gap-3">
-            <span className="font-extrabold text-2xl tracking-widest text-white">
-              CP TECH
-            </span>
-          </div>
+          <img src={lightLogo} alt="CP Tech Logo" className="h-8" />
         </Link>
 
         {/* Desktop Navigation */}

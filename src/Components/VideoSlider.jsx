@@ -1,10 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const VideoSlider = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  // Videos + posters to match reference structure (autoplay-friendly, muted)
   const videos = [
     {
       id: 1,
@@ -53,13 +50,54 @@ const VideoSlider = () => {
     },
   ];
 
+  const BUFFER_SIZE = 2;
+  const loopedVideos = [
+    ...videos.slice(-BUFFER_SIZE),
+    ...videos,
+    ...videos.slice(0, BUFFER_SIZE),
+  ];
+
+  const [activeIndex, setActiveIndex] = useState(BUFFER_SIZE);
+  const [isTransitioning, setIsTransitioning] = useState(true);
+  const sliderRef = useRef(null);
+
+
   const nextSlide = () => {
-    setActiveIndex((prev) => (prev + 1) % videos.length);
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setActiveIndex((prev) => prev + 1);
   };
 
   const prevSlide = () => {
-    setActiveIndex((prev) => (prev - 1 + videos.length) % videos.length);
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setActiveIndex((prev) => prev - 1);
   };
+
+  const handlePaginationClick = (index) => {
+    setIsTransitioning(true);
+    setActiveIndex(index + BUFFER_SIZE);
+  };
+
+  useEffect(() => {
+    if (!isTransitioning) return;
+
+    const handleTransitionEnd = () => {
+      if (activeIndex === videos.length + BUFFER_SIZE) {
+        setActiveIndex(BUFFER_SIZE);
+        setIsTransitioning(false);
+      } else if (activeIndex === BUFFER_SIZE - 1) {
+        setActiveIndex(videos.length + BUFFER_SIZE - 1);
+        setIsTransitioning(false);
+      } else {
+        setIsTransitioning(false);
+      }
+    };
+
+    const timer = setTimeout(handleTransitionEnd, 500); // Transition duration
+
+    return () => clearTimeout(timer);
+  }, [activeIndex]);
 
   // Layout math to mimic reference (3 visible equal slides with small gap)
   const SLIDE_VW = 33; // each slide ~ one third of viewport width
@@ -68,14 +106,16 @@ const VideoSlider = () => {
   const CENTER_PAD_VW = 50 - SLIDE_VW / 2; // leading/trailing spacer to center first/last
 
   return (
-    <div className="relative w-full h-[68vh] max-h-[820px] overflow-hidden rounded-[18px] bg-[#0b0b0b] px-2 sm:px-6">
+    <div className="relative w-full h-[68vh] max-h-[820px] overflow-hidden rounded-[18px] bg-gradient-to-b from-gray-50 to-blue-100 px-2 sm:px-6">
+      {/* Background decorative element */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-48 bg-gradient-to-r from-violet-200/30 via-cyan-200/30 to-violet-200/30 blur-3xl -z-10 animate-pulse"></div>
       {/* Slides container - horizontal carousel */}
       <div
-        className="flex h-full w-full items-center justify-center transition-transform duration-500 ease-in-out"
+        ref={sliderRef}
+        className={`flex h-full w-full items-center justify-center`}
         style={{
-          transform: `translateX(calc(-${
-            activeIndex * STEP_VW
-          }vw + ${CENTER_PAD_VW}vw))`,
+          transform: `translateX(calc(-${activeIndex * STEP_VW}vw + ${CENTER_PAD_VW}vw))`,
+          transition: `transform ${isTransitioning ? '0.5s ease-in-out' : '0s'}`,
         }}
       >
         {/* Leading spacer so the first slide can be centered */}
@@ -83,11 +123,11 @@ const VideoSlider = () => {
           className="flex-shrink-0"
           style={{ width: `calc(${CENTER_PAD_VW}vw)` }}
         />
-        {videos.map((video, idx) => {
+        {loopedVideos.map((video, idx) => {
           const isActive = idx === activeIndex;
           return (
             <div
-              key={video.id}
+              key={`${video.id}-${idx}`}
               className={`relative flex-shrink-0 overflow-hidden transition-all duration-500 rounded-[18px] border bg-black/20`}
               style={{
                 width: `calc(${SLIDE_VW}vw)`,
@@ -109,18 +149,15 @@ const VideoSlider = () => {
                 preload="metadata"
               />
               {/* Gradient and texts overlay */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/25 via-black/5 to-black/40" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10" />
               <div
-                className={`absolute top-6 left-1/2 -translate-x-1/2 text-center transition-opacity ${
+                className={`absolute bottom-6 left-1/2 -translate-x-1/2 text-center transition-opacity w-full px-4 ${
                   isActive ? "opacity-100" : "opacity-80"
                 }`}
               >
-                <h3 className="text-white/95 font-extrabold tracking-tight text-lg sm:text-xl md:text-2xl drop-shadow-md whitespace-nowrap">
+                <h3 className="text-white font-bold tracking-tight text-lg sm:text-xl drop-shadow-lg whitespace-nowrap">
                   {video.title}
                 </h3>
-                <p className="mt-1 text-white/85 text-xs md:text-sm font-semibold">
-                  {video.cta}
-                </p>
               </div>
             </div>
           );
@@ -135,16 +172,16 @@ const VideoSlider = () => {
       {/* Navigation arrows */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-40 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md flex items-center justify-center transition-all duration-300 border border-white/20"
+        className="absolute left-4 top-1/2 -translate-y-1/2 flex-shrink-0 bg-white/95 backdrop-blur-sm shadow-2xl w-12 h-12 rounded-full hover:bg-gradient-to-r hover:from-cyan-50 hover:to-purple-50 transition-all duration-300 transform hover:scale-110 cursor-pointer group border border-gray-200 z-30 flex items-center justify-center"
         aria-label="Previous"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="white"
-          strokeWidth="2"
-          className="w-6 h-6"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          className="w-6 h-6 text-cyan-600 group-hover:text-purple-600 transition-colors duration-300"
         >
           <path
             d="M15 18l-6-6 6-6"
@@ -155,16 +192,16 @@ const VideoSlider = () => {
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-40 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md flex items-center justify-center transition-all duration-300 border border-white/20"
+        className="absolute right-4 top-1/2 -translate-y-1/2 flex-shrink-0 bg-white/95 backdrop-blur-sm shadow-2xl w-12 h-12 rounded-full hover:bg-gradient-to-r hover:from-cyan-50 hover:to-purple-50 transition-all duration-300 transform hover:scale-110 cursor-pointer group border border-gray-200 z-30 flex items-center justify-center"
         aria-label="Next"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="white"
-          strokeWidth="2"
-          className="w-6 h-6"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          className="w-6 h-6 text-cyan-600 group-hover:text-purple-600 transition-colors duration-300"
         >
           <path d="M9 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
@@ -175,11 +212,11 @@ const VideoSlider = () => {
         {videos.map((_, index) => (
           <button
             key={index}
-            onClick={() => setActiveIndex(index)}
+            onClick={() => handlePaginationClick(index)}
             className={`h-2 rounded-full transition-all duration-300 ${
-              index === activeIndex
-                ? "bg-white w-6"
-                : "bg-white/50 w-2 hover:bg-white/70"
+              index === (activeIndex - BUFFER_SIZE + videos.length) % videos.length
+                ? "bg-cyan-500 w-6"
+                : "bg-gray-400/50 w-2 hover:bg-gray-500/70"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
