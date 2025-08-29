@@ -171,42 +171,24 @@ const VideoSlider = () => {
       {/* Navigation arrows */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 flex-shrink-0 bg-white/95 backdrop-blur-sm shadow-2xl w-12 h-12 rounded-full hover:bg-gradient-to-r hover:from-cyan-50 hover:to-purple-50 transition-all duration-300 transform hover:scale-110 cursor-pointer group border border-gray-200 z-30 flex items-center justify-center"
+        className="absolute left-4 top-1/2 -translate-y-1/2 flex-shrink-0 bg-white/70 backdrop-blur-sm shadow-2xl w-12 h-12 rounded-full hover:bg-gradient-to-r hover:from-cyan-200 hover:to-purple-200 transition-all duration-300 transform hover:scale-125 cursor-pointer group border border-gray-200 z-30 flex items-center justify-center"
         aria-label="Previous"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          className="w-6 h-6 text-cyan-600 group-hover:text-purple-600 transition-colors duration-300"
-        >
-          <path
-            d="M15 18l-6-6 6-6"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
+        <svg className="w-8 h-8 text-cyan-600 group-hover:text-purple-600 transition-colors duration-300" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M19 12a1 1 0 0 1-1 1H8.414l1.293 1.293a1 1 0 0 1-1.414 1.414l-3-3a1 1 0 0 1 0-1.414l3-3a1 1 0 0 1 1.414 1.414L8.414 11H18a1 1 0 0 1 1 1z"/>
         </svg>
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 flex-shrink-0 bg-white/95 backdrop-blur-sm shadow-2xl w-12 h-12 rounded-full hover:bg-gradient-to-r hover:from-cyan-50 hover:to-purple-50 transition-all duration-300 transform hover:scale-110 cursor-pointer group border border-gray-200 z-30 flex items-center justify-center"
+        className="absolute right-4 top-1/2 -translate-y-1/2 flex-shrink-0 bg-white/70 backdrop-blur-sm shadow-2xl w-12 h-12 rounded-full hover:bg-gradient-to-r hover:from-cyan-200 hover:to-purple-200 transition-all duration-300 transform hover:scale-125 cursor-pointer group border border-gray-200 z-30 flex items-center justify-center"
         aria-label="Next"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          className="w-6 h-6 text-cyan-600 group-hover:text-purple-600 transition-colors duration-300"
-        >
-          <path d="M9 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+        <svg className="w-8 h-8 text-cyan-600 group-hover:text-purple-600 transition-colors duration-300" viewBox="0 0 24 24" style={{transform: 'scaleX(-1)'}}>
+          <path fill="currentColor" d="M19 12a1 1 0 0 1-1 1H8.414l1.293 1.293a1 1 0 0 1-1.414 1.414l-3-3a1 1 0 0 1 0-1.414l3-3a1 1 0 0 1 1.414 1.414L8.414 11H18a1 1 0 0 1 1 1z"/>
         </svg>
       </button>
 
-      {/* Pagination dots */}
+      {/* Pagination dots with gradient */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2 z-40">
         {videos.map((_, index) => (
           <button
@@ -214,8 +196,8 @@ const VideoSlider = () => {
             onClick={() => handlePaginationClick(index)}
             className={`h-2 rounded-full transition-all duration-300 ${
               index === (activeIndex - BUFFER_SIZE + videos.length) % videos.length
-                ? "bg-cyan-500 w-6"
-                : "bg-gray-400/50 w-2 hover:bg-gray-500/70"
+                ? "w-6 bg-gradient-to-r from-cyan-500 to-purple-500"
+                : "w-2 bg-white/50 hover:bg-gradient-to-r hover:from-cyan-400/70 hover:to-purple-400/70"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
