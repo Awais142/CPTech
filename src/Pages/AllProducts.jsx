@@ -27,7 +27,7 @@ const AllProducts = () => {
           <div className="flex items-center justify-center gap-3 mb-4">
             <BsStars className="text-2xl md:text-3xl text-cyan-500 animate-pulse" />
             <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-600 via-indigo-500 to-purple-600">
-              CP Tech Products
+              CP Tech All Products
             </h1>
             <BsStars className="text-2xl md:text-3xl text-cyan-500 animate-pulse" />
           </div>

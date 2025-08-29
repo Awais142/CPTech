@@ -1,5 +1,13 @@
 import React from 'react';
 
+// Import all product images using Vite's import.meta.glob
+const imageModules = import.meta.glob('../../../src/assets/images/*.{jpeg,jpg,png,svg}', { eager: true });
+const images = Object.entries(imageModules).reduce((acc, [path, module]) => {
+  const imageName = path.split('/').pop();
+  acc[imageName] = module.default;
+  return acc;
+}, {});
+
 const ProductCard = ({ product }) => {
   return (
     <div className="group relative bg-white rounded-xl overflow-hidden transition-all duration-300 hover:shadow-xl h-full flex flex-col border border-gray-100 hover:border-gray-200">
@@ -16,7 +24,7 @@ const ProductCard = ({ product }) => {
       <div className="relative pt-[100%] bg-white">
         <div className="absolute inset-0 flex items-center justify-center p-4">
           <img
-            src={product.image}
+            src={images[product.image.split('/').pop()] || product.image}
             alt={product.name}
             className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
           />
