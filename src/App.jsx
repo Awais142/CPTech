@@ -48,7 +48,6 @@ const HomePage = () => {
       <VideoSlider />
       <ParallexVideoSection />
       <CustomerReviews />
-      <Footer />
     </div>
   );
 };
@@ -66,6 +65,7 @@ function App() {
         <Route path="/cp-twist" element={<CPTwist />} />
         <Route path="/contact" element={<ContactUs />} />
       </Routes>
+      <Footer />
       <GoToTop />
     </Router>
   );

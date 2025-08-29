@@ -1,12 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { BsStars, BsArrowRight } from 'react-icons/bs';
+import Lenis from '@studio-freight/lenis';
 import products from '../data/products.json';
 import ProductCard from '../Components/Products/ProductCard';
 
 const AllProducts = () => {
   const [activeTab, setActiveTab] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
+
+  // Initialize Lenis for smooth scrolling
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smooth: true,
+      smoothTouch: true,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
 
   // Get unique categories
   const categories = ['all', ...new Set(products.all.map(product => product.category))];
@@ -82,7 +104,6 @@ const AllProducts = () => {
             </Link>
           ))}
         </div>
-
         {/* Empty State */}
         {filteredProducts.length === 0 && (
           <div className="text-center py-16">
