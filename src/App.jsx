@@ -64,7 +64,7 @@ function App() {
         <Route path="/products" element={<AllProducts />} />
         <Route path="/cp-15k" element={<CPFifteenK />} />
         <Route path="/cp-twist" element={<CPTwist />} />
-        <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/contact" element={<ContactUs />} />
       </Routes>
       <GoToTop />
     </Router>

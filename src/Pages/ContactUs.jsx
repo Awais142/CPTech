@@ -35,9 +35,6 @@ const ContactUs = () => {
     <div className="min-h-screen text-gray-800 relative">
       <ContactBackground />
       <div className="relative z-10">
-        <Toolbar />
-        <Navbar />
-
         {/* Section 1: Left text, right image */}
         <section className="max-w-7xl mx-auto px-6 py-16 md:py-24">
           <div className="grid md:grid-cols-2 gap-12 items-center">
