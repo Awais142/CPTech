@@ -3,16 +3,17 @@ import React from 'react';
 const ProductCard = ({ product }) => {
   return (
     <div className="group relative bg-white rounded-xl overflow-hidden transition-all duration-300 hover:shadow-xl h-full flex flex-col border border-gray-100 hover:border-gray-200">
+      {/* Badge positioned absolutely in the card */}
+      {product.isNew && (
+        <div className="absolute top-2 right-2 z-10">
+          <span className="bg-gradient-to-r from-cyan-500 to-purple-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+            NEW
+          </span>
+        </div>
+      )}
+      
       {/* Image Container */}
-      <div className="relative pt-[100%] bg-white overflow-hidden">
-        {/* Badge - Now inside image container but positioned absolutely */}
-        {product.isNew && (
-          <div className="absolute top-2 right-2 z-10">
-            <span className="bg-gradient-to-r from-cyan-500 to-purple-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-md inline-block">
-              NEW
-            </span>
-          </div>
-        )}
+      <div className="relative pt-[100%] bg-white">
         <div className="absolute inset-0 flex items-center justify-center p-4">
           <img
             src={product.image}
