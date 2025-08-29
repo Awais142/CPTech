@@ -34,7 +34,6 @@ const products = [
 
 const navLinks = [
   { label: "Product", dropdown: true },
-  { label: "Our Brand", dropdown: true },
   { label: "What's CP Tech" },
   { label: "Support", dropdown: true },
 ];
@@ -64,7 +63,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
         {/* Brand */}
         <Link to="/" className="no-underline text-inherit">
-          <img src={lightLogo} alt="CP Tech Logo" className="h-8" />
+          <img src={lightLogo} alt="CP Tech Logo" className="h-10" />
         </Link>
 
         {/* Desktop Navigation */}
@@ -113,18 +112,6 @@ const Navbar = () => {
                     <button className="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors">
                       View All Products <FaChevronRight className="text-xs" />
                     </button>
-                  </div>
-                </div>
-              )}
-              {link.dropdown && link.label !== "Product" && (
-                <div className="absolute left-0 top-full pt-2 hidden group-hover:block">
-                  <div className="backdrop-blur-md bg-black/30 border border-white/10 rounded-lg shadow-2xl min-w-[160px] py-2 px-3 text-sm font-normal text-white">
-                    <span className="block py-1 px-2 hover:bg-white/10 rounded transition-colors duration-200">
-                      Option 1
-                    </span>
-                    <span className="block py-1 px-2 hover:bg-white/10 rounded transition-colors duration-200">
-                      Option 2
-                    </span>
                   </div>
                 </div>
               )}

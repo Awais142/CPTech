@@ -97,11 +97,11 @@
   }
 }
 @keyframes scroll-left {
-  0% {
+  from {
     transform: translateX(0);
   }
-  100% {
-    transform: translateX(-50%);
+  to {
+    transform: translateX(-100%);
   }
 }
 @keyframes scroll-right {
@@ -140,7 +140,7 @@
   animation: smoke-float 8s ease-in-out infinite;
 }
 .animate-scroll-left {
-  animation: scroll-left 30s linear infinite;
+  animation: scroll-left 40s linear infinite;
 }
 .animate-scroll-right {
   animation: scroll-right 30s linear infinite;
