@@ -1,0 +1,64 @@
+{
+  "all": [
+    {
+      "id": 1,
+      "name": "CP® 15K Pro",
+      "category": "15k",
+      "image": "/src/assets/15K1.jpg",
+      "price": 1299,
+      "isNew": true,
+      "features": ["High Performance", "Long Battery Life", "Fast Charging"],
+      "description": "Experience ultimate performance with our flagship CP 15K Pro model. Designed for professionals who demand the best."
+    },
+    {
+      "id": 2,
+      "name": "CP® 15K Elite",
+      "category": "15k",
+      "image": "/src/assets/15K2.jpg",
+      "price": 1499,
+      "isNew": true,
+      "features": ["Premium Build", "Advanced Cooling", "Enhanced Display"],
+      "description": "Elite performance meets stunning design with our premium CP 15K Elite model."
+    },
+    {
+      "id": 3,
+      "name": "CP® 25K Twist Pro",
+      "category": "25k",
+      "image": "/src/assets/25kTwis1.jpg",
+      "price": 1799,
+      "isNew": true,
+      "features": ["360° Hinge", "4K Touch Display", "Stylus Support"],
+      "description": "Versatility redefined with the innovative 360° hinge design of CP 25K Twist Pro."
+    },
+    {
+      "id": 4,
+      "name": "CP® 25K Twist Elite",
+      "category": "25k",
+      "image": "/src/assets/25kTwist2.jpg",
+      "price": 1999,
+      "isNew": true,
+      "features": ["4K OLED Display", "Premium Audio", "All-day Battery"],
+      "description": "The ultimate convertible experience with cutting-edge technology and premium materials."
+    },
+    {
+      "id": 5,
+      "name": "CP® 15K Standard",
+      "category": "15k",
+      "image": "/src/assets/15K3.jpg",
+      "price": 999,
+      "isNew": false,
+      "features": ["Sleek Design", "Great Performance", "Value for Money"],
+      "description": "Affordable excellence with the CP 15K Standard, perfect for everyday use."
+    },
+    {
+      "id": 6,
+      "name": "CP® 25K Twist Max",
+      "category": "25k",
+      "image": "/src/assets/25kTwist3.jpg",
+      "price": 2199,
+      "isNew": true,
+      "features": ["Max Performance", "Advanced Cooling", "Premium Build"],
+      "description": "Pushing boundaries with the most powerful CP 25K model yet."
+    }
+  ]
+}

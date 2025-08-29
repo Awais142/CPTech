@@ -12,6 +12,7 @@ import Footer from "./Components/Footer";
 import GoToTop from "./Components/GoToTop";
 import CPFifteenK from "./Pages/CPFifteenK";
 import CPTwist from "./Pages/CPTwist";
+import AllProducts from "./Pages/AllProducts";
 import AgeVerifier from "./Components/AgeVerifier";
 import ParallexVideoSection from "./Components/ParallexVideoSection";
 import VideoSlider from "./Components/VideoSlider";
@@ -41,8 +42,6 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <Toolbar />
-      <Navbar />
       <HeroSlider />
       <ProductSlider />
       <CompanyVideo />
@@ -58,11 +57,14 @@ function App() {
   return (
     <Router>
       <AgeVerifier />
+      <Toolbar />
+      <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/CP15k" element={<CPFifteenK />} />
-        <Route path="/CPTwist" element={<CPTwist />} />
-        <Route path="/contact" element={<ContactUs />} />
+        <Route path="/products" element={<AllProducts />} />
+        <Route path="/cp-15k" element={<CPFifteenK />} />
+        <Route path="/cp-twist" element={<CPTwist />} />
+        <Route path="/contact-us" element={<ContactUs />} />
       </Routes>
       <GoToTop />
     </Router>
