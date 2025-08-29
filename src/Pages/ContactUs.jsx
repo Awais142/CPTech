@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Lenis from "@studio-freight/lenis";
-import Toolbar from "../Components/Toolbar";
-import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import heroImg from "../assets/25kTwis1.jpg";
 import ContactBackground from "../Components/ContactBackground";
@@ -30,7 +28,6 @@ const ContactUs = () => {
     e.preventDefault();
     setStatus("success"); // purely visual for now
   };
-
   return (
     <div className="min-h-screen text-gray-800 relative">
       <ContactBackground />
