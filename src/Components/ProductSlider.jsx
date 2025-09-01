@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { BsStars } from "react-icons/bs";
+import { BsStars, BsArrowRight } from "react-icons/bs";
+import { Link } from "react-router-dom";
 import img15k1 from "../assets/15K1.jpg";
 import img15k2 from "../assets/15K2.jpg";
 import img15k3 from "../assets/15K3.jpg";
@@ -136,10 +137,13 @@ const ProductSlider = () => {
             <BsStars className="text-2xl md:text-3xl text-cyan-500 animate-pulse" />
           </div>
           <div className="h-1 w-24 bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-500 rounded-full mb-4"></div>
-          <button className="text-indigo-600 hover:text-purple-600 font-medium flex items-center gap-2 mx-auto group transition-all duration-300">
-            Learn More{" "}
+          <Link 
+            to="/products" 
+            className="text-indigo-600 hover:text-purple-600 font-medium flex items-center gap-2 mx-auto group transition-all duration-300"
+          >
+            Learn More{' '}
             <FaChevronRight className="inline-block group-hover:translate-x-1 transition-transform" />
-          </button>
+          </Link>
         </div>
         {/* Navigation Container with buttons outside */}
         <div className="relative flex items-center">

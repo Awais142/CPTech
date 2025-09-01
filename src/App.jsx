@@ -17,7 +17,7 @@ import AgeVerifier from "./Components/AgeVerifier";
 import ParallexVideoSection from "./Components/ParallexVideoSection";
 import VideoSlider from "./Components/VideoSlider";
 import ContactUs from "./Pages/ContactUs";
-
+import AboutUs from "./Pages/AboutUs";
 // Main Home Page Component
 const HomePage = () => {
   useEffect(() => {
@@ -64,6 +64,7 @@ function App() {
         <Route path="/cp-15k" element={<CPFifteenK />} />
         <Route path="/cp-twist" element={<CPTwist />} />
         <Route path="/contact" element={<ContactUs />} />
+        <Route path="/about" element={<AboutUs />} />
       </Routes>
       <Footer />
       <GoToTop />
