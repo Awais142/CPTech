@@ -33,8 +33,6 @@ const CPFifteenK = () => {
     <div className="min-h-screen bg-transparent relative">
       <ProductBackground />
       <div className="relative z-10">
-        <Toolbar />
-        <Navbar />
         <ProductHero />
         <ProductHeading />
         <ProductFeaturesSection />

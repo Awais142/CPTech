@@ -10,25 +10,25 @@ const products = [
     name: "CP 15K Pro",
     image: "/images/15k1.png",
     isNew: true,
-    link: "/CP15k",
+    link: "/cp-15k",
   },
   {
     name: "CP 15K Elite",
     image: "/images/15k2.png",
     isNew: true,
-    link: "/CP15k",
+    link: "/cp-15k",
   },
   {
     name: "CP Twist Pro",
     image: "/images/twist1.png",
     isNew: true,
-    link: "/CPTwist",
+    link: "/cp-twist",
   },
   {
     name: "CP Twist Elite",
     image: "/images/twist2.png",
     isNew: true,
-    link: "/CPTwist",
+    link: "/cp-twist",
   },
 ];
 
