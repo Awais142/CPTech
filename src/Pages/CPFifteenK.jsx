@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
-import Toolbar from "../Components/Toolbar";
-import Navbar from "../Components/Navbar";
 import ProductHero from "../Components/Products/ProductHero";
 import ProductHeading from "../Components/Products/ProductHeading";
 import ProductFeaturesSection from "../Components/Products/ProductFeaturesSection";
