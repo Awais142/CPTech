@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
-import { FaChevronRight } from 'react-icons/fa';
 import PracticeMakesPerfect from '../Components/AboutUs/PracticeMakesPerfect';
 
 // Assets
@@ -44,7 +43,6 @@ const AboutUs = () => {
       image: experienceImg
     }
   ];
-
 
   // Philosophy data
   const philosophies = [
@@ -179,7 +177,7 @@ const AboutUs = () => {
 
       {/* Practice Makes Perfect Section */}
       <PracticeMakesPerfect />
-
+/
       {/* Philosophy Section */}
       <section className="relative py-20 bg-white">
         <div className="container mx-auto px-4">
@@ -330,7 +328,7 @@ const AboutUs = () => {
           </div>
         </div>
       </section>
-
+      
       {/* Values Section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
