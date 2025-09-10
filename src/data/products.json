@@ -4,7 +4,7 @@
       "id": 1,
       "name": "CP® 15K Pro",
       "category": "15k",
-      "image": "/src/assets/15K1.jpg",
+      "image": "../assets/images/15K1.png",
       "price": 1299,
       "isNew": true,
       "features": ["High Performance", "Long Battery Life", "Fast Charging"],
@@ -12,53 +12,37 @@
     },
     {
       "id": 2,
-      "name": "CP® 15K Elite",
-      "category": "15k",
-      "image": "/src/assets/15K2.jpg",
+      "name": "CP® Flow Bar 25K",
+      "category": "flowbar",
+      "image": "../assets/images/Flowbar25k.png",
       "price": 1499,
       "isNew": true,
       "features": ["Premium Build", "Advanced Cooling", "Enhanced Display"],
-      "description": "Elite performance meets stunning design with our premium CP 15K Elite model."
+      "description": "Elite performance meets stunning design with our premium CP Flow Bar 25K model."
     },
     {
       "id": 3,
-      "name": "CP® 25K Twist Pro",
-      "category": "25k",
-      "image": "/src/assets/25kTwis1.jpg",
+      "name": "CP® Crystal CP 600",
+      "category": "crystal",
+      "image": "../assets/images/crystalcp600.png",
       "price": 1799,
       "isNew": true,
-      "features": ["360° Hinge", "4K Touch Display", "Stylus Support"],
-      "description": "Versatility redefined with the innovative 360° hinge design of CP 25K Twist Pro."
+      "features": [
+        "Crystal Clear Display",
+        "Premium Design",
+        "Enhanced Performance"
+      ],
+      "description": "Experience crystal clear performance with the innovative CP Crystal CP 600."
     },
     {
       "id": 4,
-      "name": "CP® 25K Twist Elite",
-      "category": "25k",
-      "image": "/src/assets/25kTwist2.jpg",
+      "name": "CP® Crystal Pro 600",
+      "category": "crystal",
+      "image": "../assets/images/crystalpro600.png",
       "price": 1999,
       "isNew": true,
-      "features": ["4K OLED Display", "Premium Audio", "All-day Battery"],
-      "description": "The ultimate convertible experience with cutting-edge technology and premium materials."
-    },
-    {
-      "id": 5,
-      "name": "CP® 15K Standard",
-      "category": "15k",
-      "image": "/src/assets/15K3.jpg",
-      "price": 999,
-      "isNew": false,
-      "features": ["Sleek Design", "Great Performance", "Value for Money"],
-      "description": "Affordable excellence with the CP 15K Standard, perfect for everyday use."
-    },
-    {
-      "id": 6,
-      "name": "CP® 25K Twist Max",
-      "category": "25k",
-      "image": "/src/assets/25kTwist3.jpg",
-      "price": 2199,
-      "isNew": true,
-      "features": ["Max Performance", "Advanced Cooling", "Premium Build"],
-      "description": "Pushing boundaries with the most powerful CP 25K model yet."
+      "features": ["Professional Grade", "Premium Audio", "All-day Battery"],
+      "description": "The ultimate crystal experience with cutting-edge technology and premium materials."
     }
   ]
 }
