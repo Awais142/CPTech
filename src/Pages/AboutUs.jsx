@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import PracticeMakesPerfect from "../Components/AboutUs/PracticeMakesPerfect";
 import CompanionshipSection from "../Components/AboutUs/CompanionshipSection";
+import FinalSloganSection from "../Components/AboutUs/FinalSloganSection";
 
 // Assets
 const heroBg =
@@ -202,81 +203,9 @@ const AboutUs = () => {
         </div>
       </section>
       {/* Practice Makes Perfect Section */}
-      <PracticeMakesPerfect />/{/* Philosophy Section */}
-      <section className="relative py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-purple-500">
-              Do Things Right and Great.
-            </h2>
-          </motion.div>
-
-          <div className="max-w-5xl mx-auto">
-            <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl">
-              <div className="absolute inset-0">
-                <img
-                  src={philosophies[activeSlide].image}
-                  alt={philosophies[activeSlide].title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent">
-                  <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                    <h3 className="text-3xl font-bold mb-4">
-                      {philosophies[activeSlide].title}
-                    </h3>
-                    <p className="text-lg max-w-2xl">
-                      {philosophies[activeSlide].description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex justify-center mt-8 space-x-4">
-              {philosophies.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-colors ${
-                    index === activeSlide
-                      ? "bg-gradient-to-r from-cyan-500 to-purple-500 w-8"
-                      : "bg-gray-300"
-                  }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <PracticeMakesPerfect />
+      <FinalSloganSection />
       <CompanionshipSection />
-      {/* Final Slogan */}
-      <section className="h-screen flex items-center justify-center bg-black">
-        <div className="text-center text-white">
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-7xl font-bold mb-4"
-          >
-            Make It CP Tech,
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-4xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-400"
-          >
-            Enjoy Yourself.
-          </motion.p>
-        </div>
-      </section>
       {/* Team Section */}
       <section className="min-h-screen py-20 bg-gray-50">
         <div className="container mx-auto px-4">
