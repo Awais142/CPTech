@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import PracticeMakesPerfect from "../Components/AboutUs/PracticeMakesPerfect";
+import CompanionshipSection from "../Components/AboutUs/CompanionshipSection";
 
 // Assets
 const heroBg =
@@ -253,41 +254,7 @@ const AboutUs = () => {
           </div>
         </div>
       </section>
-      {/* Companionship Section */}
-      <section className="relative h-screen">
-        <div className="absolute inset-0">
-          <img
-            src={companionshipImg}
-            alt="Companionship"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-        </div>
-
-        <div className="relative z-10 h-full flex items-center justify-center text-center px-4">
-          <div className="max-w-3xl mx-auto text-white">
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-4xl md:text-6xl font-bold mb-6"
-            >
-              Companionship
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="text-xl md:text-2xl mb-8"
-            >
-              CP Tech has always been a reliable companion for users. Our
-              continuous exploration and attentive listening guide us to
-              discover and create beauty in everything we do.
-            </motion.p>
-          </div>
-        </div>
-      </section>
+      <CompanionshipSection />
       {/* Final Slogan */}
       <section className="h-screen flex items-center justify-center bg-black">
         <div className="text-center text-white">

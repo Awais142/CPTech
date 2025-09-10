@@ -9,9 +9,9 @@ export default function MultiStageHero({
   videoSrc = brandVideo, // Properly imported video
   posterSrc = "/generic-video-poster.png",
   texts = [
-    "LOST MARY strives to break free from",
-    "traditional product forms and embrace",
-    "innovation from design, technology to flavors.",
+    "CP Tech International premium vape",
+    "engineering, iconic design, and",
+    "flavours tuned for every market",
   ],
   linkHref = "/about",
   linkText = "VIEW MORE",
@@ -104,28 +104,26 @@ export default function MultiStageHero({
       ref={containerRef}
     >
       <div className="sticky top-0 w-full h-screen overflow-hidden">
-
-
         {/* Stage 1: Heading with video-in-text effect */}
         <div
           className="absolute inset-0 flex items-center justify-center z-30 transition-opacity duration-500 heading-mask-container"
           style={{
             opacity: showHeading ? 1 : 0,
             pointerEvents: showHeading ? "auto" : "none",
-            background: '#fff',
+            background: "#fff",
           }}
         >
           <div
             className="blend-hero-section"
             style={{
-              position: 'relative',
-              width: '100vw',
-              height: '100vh',
-              background: '#fff',
-              overflow: 'hidden',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
+              position: "relative",
+              width: "100vw",
+              height: "100vh",
+              background: "#fff",
+              overflow: "hidden",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
             <video
@@ -136,12 +134,12 @@ export default function MultiStageHero({
               poster={posterSrc}
               className="blend-hero-video"
               style={{
-                position: 'absolute',
+                position: "absolute",
                 top: 0,
                 left: 0,
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
                 zIndex: 1,
               }}
               src={videoSrc}
@@ -149,32 +147,32 @@ export default function MultiStageHero({
             <h1
               className="blend-hero-heading"
               style={{
-                position: 'absolute',
+                position: "absolute",
                 top: 0,
                 left: 0,
-                width: '100%',
-                height: '100%',
+                width: "100%",
+                height: "100%",
                 margin: 0,
-                fontFamily: 'Montserrat, sans-serif',
+                fontFamily: "Montserrat, sans-serif",
                 fontWeight: 800,
                 fontSize: `20vw`,
-                lineHeight: '100vh',
-                textTransform: 'uppercase',
-                textAlign: 'center',
-                background: '#fff',
-                mixBlendMode: 'screen',
+                lineHeight: "100vh",
+                textTransform: "uppercase",
+                textAlign: "center",
+                background: "#fff",
+                mixBlendMode: "screen",
                 zIndex: 2,
                 transform: `scale(${headingScale})`,
                 opacity: headingOpacity,
-                pointerEvents: 'none',
-                userSelect: 'none',
-                letterSpacing: '-0.05em',
+                pointerEvents: "none",
+                userSelect: "none",
+                letterSpacing: "-0.05em",
               }}
             >
               {heading}
             </h1>
             <style jsx>{`
-              @import url('https://fonts.googleapis.com/css?family=Montserrat:800&display=swap');
+              @import url("https://fonts.googleapis.com/css?family=Montserrat:800&display=swap");
               .blend-hero-section {
                 background: #fff;
                 width: 100vw;
@@ -201,7 +199,7 @@ export default function MultiStageHero({
                 width: 100%;
                 height: 100%;
                 margin: 0;
-                font-family: 'Montserrat', sans-serif !important;
+                font-family: "Montserrat", sans-serif !important;
                 font-weight: 800 !important;
                 font-size: 20vw;
                 line-height: 100vh;
@@ -275,8 +273,9 @@ export default function MultiStageHero({
                   opacity: getTextOpacity(0),
                 }}
               >
-                <span className="hero-text-bold">LOST MARY</span> strives to<br />
-                break free from
+                <span className="hero-text-bold">CP Tech</span> International—
+                <br />
+                premium vape
               </p>
               <p
                 className="hero-text-paragraph"
@@ -284,7 +283,7 @@ export default function MultiStageHero({
                   opacity: getTextOpacity(1),
                 }}
               >
-                traditional product forms and embrace
+                engineering, iconic design, and
               </p>
               <p
                 className="hero-text-paragraph"
@@ -292,7 +291,8 @@ export default function MultiStageHero({
                   opacity: getTextOpacity(2),
                 }}
               >
-                innovation from <span className="hero-text-bold">design, technology</span> to flavors.
+                flavours tuned for{" "}
+                <span className="hero-text-bold">every market</span>
               </p>
               <div className="pt-8">
                 <a
@@ -309,7 +309,7 @@ export default function MultiStageHero({
           </div>
           <style jsx>{`
             .hero-text-paragraph {
-              font-family: 'Montserrat', sans-serif !important;
+              font-family: "Montserrat", sans-serif !important;
               font-weight: 600 !important;
               color: #fff;
               margin: 0;
@@ -320,7 +320,7 @@ export default function MultiStageHero({
             }
             .hero-text-bold {
               font-weight: 600 !important;
-              font-family: 'Montserrat', sans-serif !important;
+              font-family: "Montserrat", sans-serif !important;
               letter-spacing: -0.5px;
             }
             @media (min-width: 1280px) {
