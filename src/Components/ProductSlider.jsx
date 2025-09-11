@@ -103,21 +103,25 @@ const ProductSlider = () => {
   };
 
   return (
-    <section className="w-full overflow-x-hidden py-12 md:py-16 lg:py-20 px-2 md:px-4 bg-gradient-to-b from-gray-50 to-blue-50 min-h-[520px] md:min-h-[700px] flex flex-col justify-center">
+    <section className="w-full overflow-x-hidden py-12 md:py-16 lg:py-20 px-2 md:px-4 bg-gradient-to-b from-gray-50 to-cyan-50 min-h-[520px] md:min-h-[700px] flex flex-col justify-center">
       <div className="w-full max-w-[1800px] mx-auto px-2">
         <div className="flex flex-col items-center justify-center mb-12 relative py-8">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-32 bg-gradient-to-r from-violet-200/20 via-cyan-200/20 to-violet-200/20 blur-3xl -z-10"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-32 bg-gradient-to-r from-purple-200/20 via-cyan-200/20 to-purple-200/20 blur-3xl -z-10"></div>
           <div className="flex items-center gap-3 mb-2">
-            <BsStars className="text-2xl md:text-3xl text-cyan-500 animate-pulse" />
-            <h2 className="text-4xl md:text-5xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-cyan-600 via-indigo-500 to-purple-600 relative tracking-wide leading-normal">
-              CP TECH Products
-            </h2>
-            <BsStars className="text-2xl md:text-3xl text-cyan-500 animate-pulse" />
-          </div>
-          <div className="h-1 w-24 bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-500 rounded-full mb-4"></div>
+  <BsStars className="text-2xl md:text-3xl text-cyan-400 animate-pulse" />
+  <h2 className="text-4xl md:text-5xl font-bold text-center relative tracking-wide leading-normal">
+    <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+      CP TECH Products
+    </span>
+  </h2>
+  <BsStars className="text-2xl md:text-3xl text-cyan-400 animate-pulse" />
+</div>
+
+
+          <div className="h-1 w-24 bg-gradient-cyan-purple rounded-full mb-4"></div>
           <Link
             to="/products"
-            className="text-indigo-600 hover:text-purple-600 font-medium flex items-center gap-2 mx-auto group transition-all duration-300"
+            className="text-purple-custom hover:text-cyan-custom font-medium flex items-center gap-2 mx-auto group transition-all duration-300"
           >
             Learn More{" "}
             <FaChevronRight className="inline-block group-hover:translate-x-1 transition-transform" />
@@ -128,11 +132,11 @@ const ProductSlider = () => {
           {/* Left Arrow - Completely outside */}
           <button
             onClick={() => scroll("left")}
-            className="flex-shrink-0 bg-white/70 backdrop-blur-sm shadow-2xl w-12 h-12 rounded-full hover:bg-gradient-to-r hover:from-cyan-200 hover:to-purple-200 transition-all duration-300 transform hover:scale-125 cursor-pointer group border border-gray-200 z-30 mr-4 flex items-center justify-center"
+            className="flex-shrink-0 bg-white/70 backdrop-blur-sm shadow-2xl w-12 h-12 rounded-full transition-all duration-300 transform hover:scale-125 cursor-pointer group border-2 border-cyan-custom hover:bg-gradient-cyan-purple hover:border-transparent z-30 mr-4 flex items-center justify-center"
             aria-label="Scroll Left"
           >
             <svg
-              className="w-6 h-6 text-purple-600 group-hover:text-cyan-600 transition-colors duration-300"
+              className="w-6 h-6 text-purple-custom group-hover:text-cyan-custom transition-colors duration-300"
               viewBox="0 0 24 24"
             >
               <path
@@ -161,8 +165,8 @@ const ProductSlider = () => {
                     onClick={() => handlePaginationClick(index)}
                     className={`h-2 rounded-full transition-all duration-300 ${
                       currentSlide === index
-                        ? "w-6 bg-gradient-to-r from-cyan-500 to-purple-500"
-                        : "w-2 bg-white/50 hover:bg-gradient-to-r hover:from-cyan-400/70 hover:to-purple-400/70"
+                        ? "w-6 bg-gradient-cyan-purple"
+                        : "w-2 bg-white/50 hover:bg-gradient-cyan-purple/70"
                     }`}
                     aria-label={`Go to slide ${index + 1}`}
                   />
@@ -175,7 +179,7 @@ const ProductSlider = () => {
                   className="min-w-[280px] max-w-[280px] md:min-w-[320px] md:max-w-[320px] bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] p-6 flex flex-col items-center snap-center group relative hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 flex-shrink-0 mx-1"
                 >
                   {product.isNew && (
-                    <span className="absolute top-2 left-2 bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg z-20">
+                    <span className="absolute top-2 left-2 bg-gradient-cyan-purple text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg z-20">
                       NEW
                     </span>
                   )}
@@ -186,7 +190,7 @@ const ProductSlider = () => {
                       className="w-full h-full object-contain drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
                     />
                   </div>
-                  <h3 className="text-lg md:text-xl font-bold text-gray-800 text-center mb-2 group-hover:text-blue-600 transition-colors">
+                  <h3 className="text-lg md:text-xl font-bold text-gray-800 text-center mb-2 group-hover:text-cyan-custom transition-colors">
                     {product.name}
                   </h3>
                 </div>
@@ -197,11 +201,11 @@ const ProductSlider = () => {
           {/* Right Arrow - Completely outside */}
           <button
             onClick={() => scroll("right")}
-            className="flex-shrink-0 bg-white/70 backdrop-blur-sm shadow-2xl w-12 h-12 rounded-full hover:bg-gradient-to-r hover:from-cyan-200 hover:to-purple-200 transition-all duration-300 transform hover:scale-125 cursor-pointer group border border-gray-200 z-30 ml-4 flex items-center justify-center"
+            className="flex-shrink-0 bg-white/70 backdrop-blur-sm shadow-2xl w-12 h-12 rounded-full transition-all duration-300 transform hover:scale-125 cursor-pointer group border-2 border-cyan-custom hover:bg-gradient-cyan-purple hover:border-transparent z-30 ml-4 flex items-center justify-center"
             aria-label="Scroll Right"
           >
             <svg
-              className="w-6 h-6 text-purple-600 group-hover:text-cyan-600 transition-colors duration-300"
+              className="w-6 h-6 text-purple-custom group-hover:text-cyan-custom transition-colors duration-300"
               viewBox="0 0 24 24"
               style={{ transform: "scaleX(-1)" }}
             >
