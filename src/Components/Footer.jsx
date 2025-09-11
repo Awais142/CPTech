@@ -58,8 +58,8 @@ const Footer = () => {
             {/* Company Brand Section */}
             <div className="lg:col-span-1">
               <div className="flex items-center gap-3 mb-6">
-                <BsStars className="text-2xl text-cyan-400 animate-pulse" />
-                <h2 className="text-2xl font-extrabold tracking-widest bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-400">
+                <BsStars className="text-2xl text-cyan-custom animate-pulse" />
+                <h2 className="text-2xl font-extrabold tracking-widest bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-500">
                   CP TECH
                 </h2>
               </div>
@@ -92,7 +92,7 @@ const Footer = () => {
             {/* Products Section */}
             <div>
               <h3 className="text-lg font-bold mb-6 text-white flex items-center gap-2">
-                <span className="w-1 h-6 bg-gradient-to-b from-cyan-400 to-purple-400 rounded-full"></span>
+                <span className="w-1 h-6 bg-gradient-to-b from-cyan-custom to-purple-custom rounded-full"></span>
                 Products
               </h3>
               <ul className="space-y-3">
@@ -100,7 +100,7 @@ const Footer = () => {
                   <li key={idx}>
                     <Link
                       to={product.link}
-                      className="text-gray-300 hover:text-cyan-400 transition-colors duration-300 flex items-center gap-2 group"
+                      className="text-gray-300 hover:text-cyan-custom transition-colors duration-300 flex items-center gap-2 group"
                     >
                       <FaChevronRight className="text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       {product.name}
@@ -113,7 +113,7 @@ const Footer = () => {
             {/* Company Section */}
             <div>
               <h3 className="text-lg font-bold mb-6 text-white flex items-center gap-2">
-                <span className="w-1 h-6 bg-gradient-to-b from-cyan-400 to-purple-400 rounded-full"></span>
+                <span className="w-1 h-6 bg-gradient-to-b from-cyan-custom to-purple-custom rounded-full"></span>
                 Company
               </h3>
               <ul className="space-y-3">
@@ -121,7 +121,7 @@ const Footer = () => {
                   <li key={idx}>
                     <a
                       href={link.link}
-                      className="text-gray-300 hover:text-cyan-400 transition-colors duration-300 flex items-center gap-2 group"
+                      className="text-gray-300 hover:text-cyan-custom transition-colors duration-300 flex items-center gap-2 group"
                     >
                       <FaChevronRight className="text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       {link.name}
@@ -134,7 +134,7 @@ const Footer = () => {
             {/* Support & Contact Section */}
             <div>
               <h3 className="text-lg font-bold mb-6 text-white flex items-center gap-2">
-                <span className="w-1 h-6 bg-gradient-to-b from-cyan-400 to-purple-400 rounded-full"></span>
+                <span className="w-1 h-6 bg-gradient-to-b from-cyan-custom to-purple-custom rounded-full"></span>
                 Support
               </h3>
               <ul className="space-y-3 mb-8">
@@ -142,7 +142,7 @@ const Footer = () => {
                   <li key={idx}>
                     <a
                       href={link.link}
-                      className="text-gray-300 hover:text-cyan-400 transition-colors duration-300 flex items-center gap-2 group"
+                      className="text-gray-300 hover:text-cyan-custom transition-colors duration-300 flex items-center gap-2 group"
                     >
                       <FaChevronRight className="text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       {link.name}
@@ -154,17 +154,17 @@ const Footer = () => {
               {/* Contact Info */}
               <div className="space-y-3">
                 <div className="flex items-start gap-3 text-gray-300">
-                  <FaMapMarkerAlt className="text-cyan-400 mt-1 flex-shrink-0" />
+                  <FaMapMarkerAlt className="text-cyan-custom mt-1 flex-shrink-0" />
                   <span className="text-sm">
                     123 Tech Street, Innovation City, TC 12345
                   </span>
                 </div>
                 <div className="flex items-center gap-3 text-gray-300">
-                  <FaPhone className="text-cyan-400 flex-shrink-0" />
+                  <FaPhone className="text-cyan-custom flex-shrink-0" />
                   <span className="text-sm">+1 (555) 123-4567</span>
                 </div>
                 <div className="flex items-center gap-3 text-gray-300">
-                  <FaEnvelope className="text-cyan-400 flex-shrink-0" />
+                  <FaEnvelope className="text-cyan-custom flex-shrink-0" />
                   <span className="text-sm">support@cptech.com</span>
                 </div>
               </div>
@@ -172,9 +172,9 @@ const Footer = () => {
           </div>
 
           {/* Newsletter Subscription */}
-          <div className="mt-16 p-8 bg-gradient-to-r from-cyan-900/20 via-indigo-900/20 to-purple-900/20 backdrop-blur-sm rounded-2xl border border-white/10">
+          <div className="mt-16 p-8 bg-gradient-cyan-purple/20 backdrop-blur-sm rounded-2xl border border-cyan-custom/10">
             <div className="text-center max-w-2xl mx-auto">
-              <h3 className="text-2xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-400">
+              <h3 className="text-2xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-custom to-purple-custom">
                 Stay Updated with CP Tech
               </h3>
               <p className="text-gray-300 mb-6">
@@ -185,9 +185,9 @@ const Footer = () => {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-cyan-400 transition-colors duration-300"
+                  className="flex-1 px-4 py-3 bg-white/10 backdrop-blur-sm border border-cyan-custom/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-cyan-custom transition-colors duration-300"
                 />
-                <button className="px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                <button className="px-6 py-3 bg-gradient-cyan-purple hover:from-cyan-600 hover:to-purple-600 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
                   Subscribe
                 </button>
               </div>
@@ -196,7 +196,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/10">
+        <div className="border-t border-cyan-custom/10">
           <div className="max-w-7xl mx-auto px-6 py-6">
             <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
               {/* Copyright */}
@@ -211,7 +211,7 @@ const Footer = () => {
                   <a
                     key={idx}
                     href={link.link}
-                    className="text-gray-400 hover:text-cyan-400 text-sm transition-colors duration-300"
+                    className="text-gray-400 hover:text-cyan-custom text-sm transition-colors duration-300"
                   >
                     {link.name}
                   </a>

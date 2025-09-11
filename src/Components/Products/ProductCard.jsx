@@ -10,7 +10,7 @@ const images = Object.entries(imageModules).reduce((acc, [path, module]) => {
 
 const ProductCard = ({ product }) => {
   return (
-    <div className="group relative bg-white rounded-xl overflow-hidden transition-all duration-300 hover:shadow-xl h-full flex flex-col border border-gray-100 hover:border-gray-200">
+    <div className="group relative bg-white rounded-xl overflow-hidden transition-all duration-300 hover:shadow-xl h-full flex flex-col hover:scale-[1.02] border-2 border-cyan-400/0 hover:border-cyan-400">
       {/* Badge positioned absolutely in the card */}
       {product.isNew && (
         <div className="absolute top-2 right-2 z-10">
@@ -53,9 +53,9 @@ const ProductCard = ({ product }) => {
           </button>
         </div>
       </div>
-
+      
       {/* Hover Overlay */}
-      <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-cyan-purple/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-xl" />
     </div>
   );
 };

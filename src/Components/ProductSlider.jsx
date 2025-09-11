@@ -132,17 +132,11 @@ const ProductSlider = () => {
           {/* Left Arrow - Completely outside */}
           <button
             onClick={() => scroll("left")}
-            className="flex-shrink-0 bg-white/70 backdrop-blur-sm shadow-2xl w-12 h-12 rounded-full transition-all duration-300 transform hover:scale-125 cursor-pointer group border-2 border-cyan-custom hover:bg-gradient-cyan-purple hover:border-transparent z-30 mr-4 flex items-center justify-center"
+            className="absolute left-4 top-1/2 -translate-y-1/2 flex-shrink-0 bg-white/70 backdrop-blur-sm shadow-2xl w-12 h-12 rounded-full hover:bg-gradient-to-r hover:from-cyan-200 hover:to-purple-200 transition-all duration-300 transform hover:scale-125 cursor-pointer group border border-gray-200 z-30 flex items-center justify-center"
             aria-label="Scroll Left"
           >
-            <svg
-              className="w-6 h-6 text-purple-custom group-hover:text-cyan-custom transition-colors duration-300"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fill="currentColor"
-                d="M19 12a1 1 0 0 1-1 1H8.414l1.293 1.293a1 1 0 0 1-1.414 1.414l-3-3a1 1 0 0 1 0-1.414l3-3a1 1 0 0 1 1.414 1.414L8.414 11H18a1 1 0 0 1 1 1z"
-              />
+            <svg className="w-8 h-8 text-cyan-600 group-hover:text-purple-600 transition-colors duration-300" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M19 12a1 1 0 0 1-1 1H8.414l1.293 1.293a1 1 0 0 1-1.414 1.414l-3-3a1 1 0 0 1 0-1.414l3-3a1 1 0 0 1 1.414 1.414L8.414 11H18a1 1 0 0 1 1 1z"/>
             </svg>
           </button>
 
@@ -201,18 +195,11 @@ const ProductSlider = () => {
           {/* Right Arrow - Completely outside */}
           <button
             onClick={() => scroll("right")}
-            className="flex-shrink-0 bg-white/70 backdrop-blur-sm shadow-2xl w-12 h-12 rounded-full transition-all duration-300 transform hover:scale-125 cursor-pointer group border-2 border-cyan-custom hover:bg-gradient-cyan-purple hover:border-transparent z-30 ml-4 flex items-center justify-center"
+            className="absolute right-4 top-1/2 -translate-y-1/2 flex-shrink-0 bg-white/70 backdrop-blur-sm shadow-2xl w-12 h-12 rounded-full hover:bg-gradient-to-r hover:from-cyan-200 hover:to-purple-200 transition-all duration-300 transform hover:scale-125 cursor-pointer group border border-gray-200 z-30 flex items-center justify-center"
             aria-label="Scroll Right"
           >
-            <svg
-              className="w-6 h-6 text-purple-custom group-hover:text-cyan-custom transition-colors duration-300"
-              viewBox="0 0 24 24"
-              style={{ transform: "scaleX(-1)" }}
-            >
-              <path
-                fill="currentColor"
-                d="M19 12a1 1 0 0 1-1 1H8.414l1.293 1.293a1 1 0 0 1-1.414 1.414l-3-3a1 1 0 0 1 0-1.414l3-3a1 1 0 0 1 1.414 1.414L8.414 11H18a1 1 0 0 1 1 1z"
-              />
+            <svg className="w-8 h-8 text-cyan-600 group-hover:text-purple-600 transition-colors duration-300" viewBox="0 0 24 24" style={{transform: 'scaleX(-1)'}}>
+              <path fill="currentColor" d="M19 12a1 1 0 0 1-1 1H8.414l1.293 1.293a1 1 0 0 1-1.414 1.414l-3-3a1 1 0 0 1 0-1.414l3-3a1 1 0 0 1 1.414 1.414L8.414 11H18a1 1 0 0 1 1 1z"/>
             </svg>
           </button>
         </div>

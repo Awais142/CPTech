@@ -42,18 +42,18 @@ const AllProducts = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-blue-50 py-12 md:py-16 lg:py-20">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-cyan-50 py-12 md:py-16 lg:py-20">
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
         <div className="text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <BsStars className="text-2xl md:text-3xl text-cyan-500 animate-pulse" />
-            <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-600 via-indigo-500 to-purple-600">
+            <BsStars className="text-2xl md:text-3xl text-cyan-custom animate-pulse" />
+            <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-500">
               CP Tech All Products
             </h1>
-            <BsStars className="text-2xl md:text-3xl text-cyan-500 animate-pulse" />
+            <BsStars className="text-2xl md:text-3xl text-cyan-custom animate-pulse" />
           </div>
-          <div className="h-1 w-24 bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-500 rounded-full mx-auto mb-8"></div>
+          <div className="h-1 w-24 bg-gradient-cyan-purple rounded-full mx-auto mb-8"></div>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
             Discover our premium range of high-performance devices designed to elevate your digital experience.
           </p>
@@ -64,11 +64,11 @@ const AllProducts = () => {
               <input
                 type="text"
                 placeholder="Search products..."
-                className="w-full px-6 py-4 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent shadow-sm"
+                className="w-full px-6 py-4 rounded-full border-2 border-cyan-400/0 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent shadow-sm transition-all duration-300 hover:border-cyan-400"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
-              <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-gradient-to-r from-cyan-500 to-purple-500 text-white px-6 py-2 rounded-full font-medium hover:opacity-90 transition-opacity">
+              <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-gradient-cyan-purple text-white px-6 py-2 rounded-full font-medium hover:opacity-90 transition-opacity">
                 Search
               </button>
             </div>
@@ -83,7 +83,7 @@ const AllProducts = () => {
               onClick={() => setActiveTab(category)}
               className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeTab === category
-                  ? 'bg-gradient-to-r from-cyan-500 to-purple-500 text-white shadow-lg'
+                  ? 'bg-gradient-cyan-purple text-white shadow-lg'
                   : 'bg-white text-gray-700 hover:bg-gray-100'
               }`}
             >
@@ -114,7 +114,7 @@ const AllProducts = () => {
                 setSearchQuery('');
                 setActiveTab('all');
               }}
-              className="text-cyan-600 hover:text-cyan-700 font-medium flex items-center justify-center gap-2"
+              className="text-cyan-custom hover:text-purple-custom font-medium flex items-center justify-center gap-2"
             >
               Clear all filters <BsArrowRight />
             </button>
