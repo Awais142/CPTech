@@ -39,7 +39,7 @@ const FinalSloganSection = () => {
       </div>
 
       <motion.div 
-        className="relative z-10 text-center w-full max-w-4xl mx-auto px-4"
+        className="relative z-10 text-center w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
         style={{ 
           scale,
           opacity,
@@ -50,7 +50,7 @@ const FinalSloganSection = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-6xl font-bold mb-4 text-gray-900 leading-tight"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 text-gray-900 leading-snug sm:leading-tight"
         >
           Elevate Your Vibe,
         </motion.p>
@@ -59,7 +59,7 @@ const FinalSloganSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-600 to-purple-600 leading-tight"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-600 to-purple-600 leading-snug sm:leading-tight"
         >
           CP Tech Yourself.
         </motion.p>
