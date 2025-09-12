@@ -17,7 +17,7 @@ const HeroSection = () => {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
   return (
-    <section ref={containerRef} className="floor-container h-screen relative overflow-hidden bg-black">
+    <section ref={containerRef} className="floor-container h-screen relative overflow-hidden bg-black z-100">
       <div className="absolute inset-0">
         <img
           src={heroBgWeb}
