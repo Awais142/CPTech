@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from "react";
-import img1 from "../assets/banner1.png";
-import img2 from "../assets/banner2.png";
-import img3 from "../assets/banner3.png";
+import mobile15K from "../assets/images/Banner Images/THE CP 15K Mobile Banner.webp";
+import desktop15K from "../assets/images/Banner Images/THE CP 15K Web Banner.webp";
+import mobileTwist from "../assets/images/Banner Images/THE CP TWIST Mobile Banner.webp";
+import desktopTwist from "../assets/images/Banner Images/THE CP TWIST Web Banner.webp";
 
-const images = [
-  { url: img1, alt: "Teamwork meeting" },
-  { url: img2, alt: "Modern workspace" },
-  { url: img3, alt: "Creative brainstorming" },
+const slides = [
+  { 
+    mobile: mobile15K, 
+    desktop: desktop15K, 
+    alt: "THE CP 15K Banner" 
+  },
+  { 
+    mobile: mobileTwist, 
+    desktop: desktopTwist, 
+    alt: "THE CP TWIST Banner" 
+  },
 ];
 
 const HeroSlider = () => {
@@ -15,28 +23,35 @@ const HeroSlider = () => {
   // Auto slide every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % images.length);
+      setCurrent((prev) => (prev + 1) % slides.length);
     }, 5000);
     return () => clearInterval(interval);
   }, []);
 
-  const nextSlide = () => setCurrent((prev) => (prev + 1) % images.length);
-  const prevSlide = () => setCurrent((prev) => (prev - 1 + images.length) % images.length);
+  const nextSlide = () => setCurrent((prev) => (prev + 1) % slides.length);
+  const prevSlide = () => setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
 
   return (
     <section className="relative w-full h-[90vh] overflow-hidden">
       {/* Image background layer with fade animation */}
-      {images.map((img, index) => (
+      {slides.map((slide, index) => (
         <div
           key={index}
           className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
             index === current ? "opacity-100 z-10" : "opacity-0 z-0"
           }`}
         >
+          {/* Mobile image */}
           <img
-            src={img.url}
-            alt={img.alt}
-            className="w-full h-full object-cover"
+            src={slide.mobile}
+            alt={slide.alt}
+            className="md:hidden w-full h-full object-cover"
+          />
+          {/* Desktop image */}
+          <img
+            src={slide.desktop}
+            alt={slide.alt}
+            className="hidden md:block w-full h-full object-cover"
           />
         </div>
       ))}
@@ -76,7 +91,7 @@ const HeroSlider = () => {
 
       {/* Pagination dots with gradient */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2 z-30">
-        {images.map((_, idx) => (
+        {slides.map((_, idx) => (
           <button
             key={idx}
             onClick={() => setCurrent(idx)}
