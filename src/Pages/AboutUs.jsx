@@ -57,7 +57,6 @@ const AboutUs = () => {
       <PracticeMakesPerfect />
       <FinalSloganSection />
       <CompanionshipSection />
-      <TeamSection />
     </div>
   );
 };
