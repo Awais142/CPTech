@@ -13,6 +13,7 @@ import GoToTop from "./Components/GoToTop";
 import CPFifteenK from "./Pages/CPFifteenK";
 import CPTwist from "./Pages/CPTwist";
 import AllProducts from "./Pages/AllProducts";
+import ProductPage from "./Pages/ProductPage";
 import AgeVerifier from "./Components/AgeVerifier";
 import ParallexVideoSection from "./Components/ParallexVideoSection";
 import VideoSlider from "./Components/VideoSlider";
@@ -61,6 +62,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<AllProducts />} />
+        <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/cp-15k" element={<CPFifteenK />} />
         <Route path="/cp-twist" element={<CPTwist />} />
         <Route path="/contact" element={<ContactUs />} />
