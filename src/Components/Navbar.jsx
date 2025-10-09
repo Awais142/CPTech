@@ -8,7 +8,6 @@ import imgflowbar25k from "../assets/images/Flowbar25k.png";
 import imgcrystalcp600 from "../assets/images/crystalcp600.png";
 import imgcrystalpro600 from "../assets/images/crystalpro600.png";
 
-
 // Use imported product images
 const products = [
   {
@@ -61,7 +60,7 @@ const Navbar = () => {
     <nav
       className={`sticky top-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "backdrop-blur-md bg-black/20 border-b border-cyan-custom/20 shadow-2xl"
+          ? "backdrop-blur-md bg-black/20 shadow-2xl"
           : "bg-gradient-cyan-purple"
       }`}
     >
@@ -83,15 +82,31 @@ const Navbar = () => {
               key={idx}
               className="relative group hover:text-cyan-custom transition-all duration-300 text-white/90 hover:scale-105"
             >
-              {link.label === 'Product' ? (
-                <Link to="/products" className="no-underline text-inherit cursor-pointer flex items-center gap-1">
+              {link.label === "Product" ? (
+                <Link
+                  to="/products"
+                  className="no-underline text-inherit cursor-pointer flex items-center gap-1"
+                >
                   {link.label}
-                  <svg className="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  <svg
+                    className="w-3 h-3 transition-transform duration-300 group-hover:rotate-180"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
                   </svg>
                 </Link>
               ) : link.link ? (
-                <Link to={link.link} className="no-underline text-inherit cursor-pointer">
+                <Link
+                  to={link.link}
+                  className="no-underline text-inherit cursor-pointer"
+                >
                   {link.label}
                 </Link>
               ) : (
@@ -122,7 +137,10 @@ const Navbar = () => {
                     ))}
                   </div>
                   <div className="mt-6 text-center">
-                    <Link to="/products" className="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-cyan-custom hover:text-cyan-600 transition-colors no-underline">
+                    <Link
+                      to="/products"
+                      className="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-cyan-custom hover:text-cyan-600 transition-colors no-underline"
+                    >
                       View All Products <FaChevronRight className="text-xs" />
                     </Link>
                   </div>
@@ -142,7 +160,7 @@ const Navbar = () => {
           <button className="text-white/90 hover:text-cyan-custom transition-colors duration-300 p-2 rounded-full hover:bg-cyan-custom/10">
             <FaSearch />
           </button>
-          <a 
+          <a
             href="https://calendly.com/seemal-thecptech/30min?month=2025-08"
             target="_blank"
             rel="noopener noreferrer"
@@ -164,7 +182,7 @@ const Navbar = () => {
         <div
           className={`md:hidden px-6 pb-5 transition-all duration-500 ${
             isScrolled
-              ? "backdrop-blur-md bg-black/20 border-t border-cyan-custom/20"
+              ? "backdrop-blur-md bg-black/20"
               : "bg-gradient-cyan-purple"
           }`}
         >
@@ -188,7 +206,7 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
-          <a 
+          <a
             href="https://calendly.com/seemal-thecptech/30min?month=2025-08"
             target="_blank"
             rel="noopener noreferrer"

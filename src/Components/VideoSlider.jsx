@@ -57,6 +57,7 @@ const VideoSlider = memo(() => {
   ];
 
   const [activeIndex, setActiveIndex] = useState(BUFFER_SIZE);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
   const sliderRef = useRef(null);
@@ -98,6 +99,16 @@ const VideoSlider = memo(() => {
     setActiveIndex(index + BUFFER_SIZE);
   }, []);
 
+  const goToSlide = useCallback(
+    (index) => {
+      if (isTransitioning) return;
+      setIsTransitioning(true);
+      setCurrentIndex(index);
+      setTimeout(() => setIsTransitioning(false), 500);
+    },
+    [isTransitioning]
+  );
+
   // Touch handlers for mobile swipe
   const handleTouchStart = (e) => {
     touchStartX.current = e.targetTouches[0].clientX;
@@ -115,9 +126,9 @@ const VideoSlider = memo(() => {
     const isRightSwipe = distance < -50;
 
     if (isLeftSwipe) {
-      nextSlide();
+      goToSlide((currentIndex + 1) % videos.length);
     } else if (isRightSwipe) {
-      prevSlide();
+      goToSlide((currentIndex - 1 + videos.length) % videos.length);
     }
   };
 
@@ -142,84 +153,200 @@ const VideoSlider = memo(() => {
   }, [activeIndex, videos.length]);
 
   // Layout math for desktop (3 visible equal slides with small gap)
-  const SLIDE_VW = 33; // each slide ~ one third of viewport width
-  const GAP_VW = 2; // gap between slides (vw)
+  const SLIDE_VW = 30; // each slide ~ 30% of viewport width
+  const GAP_VW = 1.5; // gap between slides (vw)
   const STEP_VW = SLIDE_VW + GAP_VW; // distance to move per slide
-  const CENTER_PAD_VW = 50 - SLIDE_VW / 2; // leading/trailing spacer to center first/last
+  const CENTER_PAD_VW = 50 - SLIDE_VW * 1.5; // leading/trailing spacer to center first/last
 
   return (
     <div className="relative w-full h-[68vh] max-h-[820px] overflow-hidden rounded-[18px] bg-gradient-to-b from-gray-50 to-blue-100 px-2 sm:px-6">
       {/* Background decorative element */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-48 bg-gradient-to-r from-violet-200/30 via-cyan-200/30 to-violet-200/30 blur-3xl -z-10 animate-pulse"></div>
 
-      {/* Slides container - horizontal carousel */}
-      <div
-        ref={sliderRef}
-        className="flex h-full w-full items-center justify-center"
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-        style={{
-          transform: `translateX(calc(-${
-            activeIndex * STEP_VW
-          }vw + ${CENTER_PAD_VW}vw))`,
-          transition: `transform ${
-            isTransitioning ? "0.5s ease-in-out" : "0s"
-          }`,
-        }}
-      >
-        {/* Leading spacer so the first slide can be centered */}
+      {/* Mobile: Single video display */}
+      <div className="md:hidden flex flex-col h-full w-full">
         <div
-          className="flex-shrink-0"
-          style={{ width: `calc(${CENTER_PAD_VW}vw)` }}
-        />
-        {loopedVideos.map((video, idx) => {
-          const isActive = idx === activeIndex;
-          return (
-            <div
-              key={`${video.id}-${idx}`}
-              className={`relative flex-shrink-0 overflow-hidden transition-all duration-500 rounded-[18px] border bg-black/20`}
-              style={{
-                width: `calc(${SLIDE_VW}vw)`,
-                height: `calc(60vh)`,
-                marginLeft: `calc(${GAP_VW / 2}vw)`,
-                marginRight: `calc(${GAP_VW / 2}vw)`,
-                opacity: isActive ? 1 : 0.85,
-                borderColor: "rgba(255,255,255,0.12)",
-              }}
-            >
-              <video
-                src={isVisible ? video.videoUrl : undefined}
-                poster={video.poster}
-                className="w-full h-full object-cover"
-                autoPlay={isVisible && isActive}
-                muted
-                loop
-                playsInline
-                preload={isVisible ? "metadata" : "none"}
-              />
-              {/* Gradient and texts overlay */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10" />
+          ref={sliderRef}
+          className="flex h-[calc(100%-60px)] w-full items-center justify-center"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          style={{
+            transform: `translateX(-${currentIndex * 100}%)`,
+            transition: `transform ${
+              isTransitioning ? "0.5s ease-in-out" : "0s"
+            }`,
+          }}
+        >
+          {videos.map((video, idx) => {
+            const isActive = idx === currentIndex;
+            return (
               <div
-                className={`absolute bottom-6 left-1/2 -translate-x-1/2 text-center transition-opacity w-full px-4 ${
-                  isActive ? "opacity-100" : "opacity-80"
-                }`}
+                key={video.id}
+                className="relative flex-shrink-0 overflow-hidden transition-all duration-500 rounded-[18px] border bg-black/20 w-full h-full"
+                style={{
+                  borderColor: "rgba(255,255,255,0.12)",
+                }}
               >
-                <h3 className="text-white font-bold tracking-tight text-lg sm:text-xl drop-shadow-lg whitespace-nowrap">
-                  {video.title}
-                </h3>
-                <button className="mt-2 bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-white/30 transition-all duration-300">
-                  {video.cta}
-                </button>
+                <video
+                  src={isVisible ? video.videoUrl : undefined}
+                  poster={video.poster}
+                  className="w-full h-full object-cover"
+                  autoPlay={isVisible && isActive}
+                  muted
+                  loop
+                  playsInline
+                  preload={isVisible ? "metadata" : "none"}
+                />
+                {/* Gradient and texts overlay */}
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10" />
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-center w-full px-4">
+                  <h3 className="text-white font-bold tracking-tight text-lg drop-shadow-lg whitespace-nowrap">
+                    {video.title}
+                  </h3>
+                  <button className="mt-2 bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-white/30 transition-all duration-300">
+                    {video.cta}
+                  </button>
+                </div>
               </div>
-            </div>
-          );
-        })}
-        {/* Trailing spacer so the last slide can be centered */}
+            );
+          })}
+        </div>
+
+        {/* Mobile Navigation - positioned at bottom */}
+        <div className="flex justify-center items-center gap-4 h-[60px] px-4">
+          <button
+            onClick={() =>
+              goToSlide((currentIndex - 1 + videos.length) % videos.length)
+            }
+            disabled={isTransitioning}
+            className="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-cyan-600 hover:bg-cyan-50 transition-all duration-300 disabled:opacity-50"
+            aria-label="Previous video"
+          >
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+
+          {/* Pagination dots */}
+          <div className="flex gap-2">
+            {videos.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                disabled={isTransitioning}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  index === currentIndex
+                    ? "w-6 bg-gradient-to-r from-cyan-500 to-purple-500"
+                    : "w-2 bg-white/50 hover:bg-gradient-to-r hover:from-cyan-400/70 hover:to-purple-400/70"
+                } disabled:cursor-not-allowed`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+
+          <button
+            onClick={() => goToSlide((currentIndex + 1) % videos.length)}
+            disabled={isTransitioning}
+            className="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-cyan-600 hover:bg-cyan-50 transition-all duration-300 disabled:opacity-50"
+            aria-label="Next video"
+          >
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {/* Desktop: 3 videos display */}
+      <div className="hidden md:flex h-full w-full items-center justify-center overflow-hidden">
         <div
-          className="flex-shrink-0"
-          style={{ width: `calc(${CENTER_PAD_VW}vw)` }}
-        />
+          ref={sliderRef}
+          className="flex h-full w-full items-center"
+          style={{
+            transform: `translateX(calc(-${
+              activeIndex * STEP_VW
+            }vw + ${CENTER_PAD_VW}vw))`,
+            transition: `transform ${
+              isTransitioning ? "0.5s ease-in-out" : "0s"
+            }`,
+            width: `calc(100% + ${CENTER_PAD_VW * 2}vw)`,
+          }}
+        >
+          {/* Leading spacer so the first slide can be centered */}
+          <div
+            className="flex-shrink-0"
+            style={{ width: `calc(${CENTER_PAD_VW}vw)` }}
+          />
+          {loopedVideos.map((video, idx) => {
+            const isActive = idx === activeIndex;
+            return (
+              <div
+                key={`${video.id}-${idx}`}
+                className={`relative flex-shrink-0 overflow-hidden transition-all duration-500 rounded-[18px] border bg-black/20`}
+                style={{
+                  width: `calc(${SLIDE_VW}vw)`,
+                  height: `calc(65vh)`,
+                  marginLeft: `calc(${GAP_VW / 2}vw)`,
+                  marginRight: `calc(${GAP_VW / 2}vw)`,
+                  opacity: isActive ? 1 : 0.85,
+                  borderColor: "rgba(255,255,255,0.12)",
+                  minWidth: "280px",
+                }}
+              >
+                <video
+                  src={isVisible ? video.videoUrl : undefined}
+                  poster={video.poster}
+                  className="w-full h-full object-cover"
+                  autoPlay={isVisible && isActive}
+                  muted
+                  loop
+                  playsInline
+                  preload={isVisible ? "metadata" : "none"}
+                />
+                {/* Gradient and texts overlay */}
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10" />
+                <div
+                  className={`absolute bottom-6 left-1/2 -translate-x-1/2 text-center transition-opacity w-full px-4 ${
+                    isActive ? "opacity-100" : "opacity-80"
+                  }`}
+                >
+                  <h3 className="text-white font-bold tracking-tight text-lg sm:text-xl drop-shadow-lg whitespace-nowrap">
+                    {video.title}
+                  </h3>
+                  <button className="mt-2 bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-white/30 transition-all duration-300">
+                    {video.cta}
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+          {/* Trailing spacer so the last slide can be centered */}
+          <div
+            className="flex-shrink-0"
+            style={{ width: `calc(${CENTER_PAD_VW}vw)` }}
+          />
+        </div>
       </div>
 
       {/* Navigation arrows - Hidden on mobile */}
@@ -254,69 +381,6 @@ const VideoSlider = memo(() => {
           />
         </svg>
       </button>
-
-      {/* Mobile Navigation - Show on mobile only */}
-      <div className="md:hidden flex justify-center items-center gap-4 mt-4">
-        <button
-          onClick={prevSlide}
-          disabled={isTransitioning}
-          className="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-cyan-600 hover:bg-cyan-50 transition-all duration-300 disabled:opacity-50"
-          aria-label="Previous video"
-        >
-          <svg
-            className="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-        </button>
-
-        {/* Pagination dots */}
-        <div className="flex gap-2">
-          {videos.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => handlePaginationClick(index)}
-              disabled={isTransitioning}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                index ===
-                (activeIndex - BUFFER_SIZE + videos.length) % videos.length
-                  ? "w-6 bg-gradient-to-r from-cyan-500 to-purple-500"
-                  : "w-2 bg-white/50 hover:bg-gradient-to-r hover:from-cyan-400/70 hover:to-purple-400/70"
-              } disabled:cursor-not-allowed`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
-
-        <button
-          onClick={nextSlide}
-          disabled={isTransitioning}
-          className="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-cyan-600 hover:bg-cyan-50 transition-all duration-300 disabled:opacity-50"
-          aria-label="Next video"
-        >
-          <svg
-            className="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </button>
-      </div>
 
       {/* Desktop Pagination dots - Hidden on mobile */}
       <div className="hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 space-x-2 z-40">
