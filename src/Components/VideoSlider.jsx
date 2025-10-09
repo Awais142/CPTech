@@ -60,6 +60,8 @@ const VideoSlider = memo(() => {
   const [isTransitioning, setIsTransitioning] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
   const sliderRef = useRef(null);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
   // Intersection Observer for lazy loading
   useEffect(() => {
@@ -96,6 +98,29 @@ const VideoSlider = memo(() => {
     setActiveIndex(index + BUFFER_SIZE);
   }, []);
 
+  // Touch handlers for mobile swipe
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return;
+
+    const distance = touchStartX.current - touchEndX.current;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextSlide();
+    } else if (isRightSwipe) {
+      prevSlide();
+    }
+  };
+
   useEffect(() => {
     if (!isTransitioning) return;
 
@@ -114,9 +139,9 @@ const VideoSlider = memo(() => {
     const timer = setTimeout(handleTransitionEnd, 500); // Transition duration
 
     return () => clearTimeout(timer);
-  }, [activeIndex]);
+  }, [activeIndex, videos.length]);
 
-  // Layout math to mimic reference (3 visible equal slides with small gap)
+  // Layout math for desktop (3 visible equal slides with small gap)
   const SLIDE_VW = 33; // each slide ~ one third of viewport width
   const GAP_VW = 2; // gap between slides (vw)
   const STEP_VW = SLIDE_VW + GAP_VW; // distance to move per slide
@@ -126,10 +151,14 @@ const VideoSlider = memo(() => {
     <div className="relative w-full h-[68vh] max-h-[820px] overflow-hidden rounded-[18px] bg-gradient-to-b from-gray-50 to-blue-100 px-2 sm:px-6">
       {/* Background decorative element */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-48 bg-gradient-to-r from-violet-200/30 via-cyan-200/30 to-violet-200/30 blur-3xl -z-10 animate-pulse"></div>
+
       {/* Slides container - horizontal carousel */}
       <div
         ref={sliderRef}
-        className={`flex h-full w-full items-center justify-center`}
+        className="flex h-full w-full items-center justify-center"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
         style={{
           transform: `translateX(calc(-${
             activeIndex * STEP_VW
@@ -163,7 +192,7 @@ const VideoSlider = memo(() => {
                 src={isVisible ? video.videoUrl : undefined}
                 poster={video.poster}
                 className="w-full h-full object-cover"
-                autoPlay={isVisible}
+                autoPlay={isVisible && isActive}
                 muted
                 loop
                 playsInline
@@ -179,6 +208,9 @@ const VideoSlider = memo(() => {
                 <h3 className="text-white font-bold tracking-tight text-lg sm:text-xl drop-shadow-lg whitespace-nowrap">
                   {video.title}
                 </h3>
+                <button className="mt-2 bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-white/30 transition-all duration-300">
+                  {video.cta}
+                </button>
               </div>
             </div>
           );
@@ -190,10 +222,10 @@ const VideoSlider = memo(() => {
         />
       </div>
 
-      {/* Navigation arrows */}
+      {/* Navigation arrows - Hidden on mobile */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 flex-shrink-0 bg-white/70 backdrop-blur-sm shadow-2xl w-12 h-12 rounded-full hover:bg-gradient-to-r hover:from-cyan-200 hover:to-purple-200 transition-all duration-300 transform hover:scale-125 cursor-pointer group border border-gray-200 z-30 flex items-center justify-center"
+        className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 flex-shrink-0 bg-white/70 backdrop-blur-sm shadow-2xl w-12 h-12 rounded-full hover:bg-gradient-to-r hover:from-cyan-200 hover:to-purple-200 transition-all duration-300 transform hover:scale-125 cursor-pointer group border border-gray-200 z-30 items-center justify-center"
         aria-label="Previous"
       >
         <svg
@@ -208,7 +240,7 @@ const VideoSlider = memo(() => {
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 flex-shrink-0 bg-white/70 backdrop-blur-sm shadow-2xl w-12 h-12 rounded-full hover:bg-gradient-to-r hover:from-cyan-200 hover:to-purple-200 transition-all duration-300 transform hover:scale-125 cursor-pointer group border border-gray-200 z-30 flex items-center justify-center"
+        className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 flex-shrink-0 bg-white/70 backdrop-blur-sm shadow-2xl w-12 h-12 rounded-full hover:bg-gradient-to-r hover:from-cyan-200 hover:to-purple-200 transition-all duration-300 transform hover:scale-125 cursor-pointer group border border-gray-200 z-30 items-center justify-center"
         aria-label="Next"
       >
         <svg
@@ -223,8 +255,71 @@ const VideoSlider = memo(() => {
         </svg>
       </button>
 
-      {/* Pagination dots with gradient */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2 z-40">
+      {/* Mobile Navigation - Show on mobile only */}
+      <div className="md:hidden flex justify-center items-center gap-4 mt-4">
+        <button
+          onClick={prevSlide}
+          disabled={isTransitioning}
+          className="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-cyan-600 hover:bg-cyan-50 transition-all duration-300 disabled:opacity-50"
+          aria-label="Previous video"
+        >
+          <svg
+            className="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </button>
+
+        {/* Pagination dots */}
+        <div className="flex gap-2">
+          {videos.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => handlePaginationClick(index)}
+              disabled={isTransitioning}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                index ===
+                (activeIndex - BUFFER_SIZE + videos.length) % videos.length
+                  ? "w-6 bg-gradient-to-r from-cyan-500 to-purple-500"
+                  : "w-2 bg-white/50 hover:bg-gradient-to-r hover:from-cyan-400/70 hover:to-purple-400/70"
+              } disabled:cursor-not-allowed`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+
+        <button
+          onClick={nextSlide}
+          disabled={isTransitioning}
+          className="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-cyan-600 hover:bg-cyan-50 transition-all duration-300 disabled:opacity-50"
+          aria-label="Next video"
+        >
+          <svg
+            className="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </button>
+      </div>
+
+      {/* Desktop Pagination dots - Hidden on mobile */}
+      <div className="hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 space-x-2 z-40">
         {videos.map((_, index) => (
           <button
             key={index}
