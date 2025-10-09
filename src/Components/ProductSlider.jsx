@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, memo, useCallback } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { BsStars } from "react-icons/bs";
 import { Link } from "react-router-dom";
@@ -50,11 +50,30 @@ const products = [
   },
 ];
 
-const ProductSlider = () => {
+const ProductSlider = memo(() => {
   const sliderRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
 
-  const handlePaginationClick = (index) => {
+  // Intersection Observer for lazy loading
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sliderRef.current) {
+      observer.observe(sliderRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  const handlePaginationClick = useCallback((index) => {
     const { current } = sliderRef;
     if (current) {
       const cardWidth = window.innerWidth >= 768 ? 340 : 240;
@@ -68,26 +87,33 @@ const ProductSlider = () => {
 
       setCurrentSlide(index);
     }
-  };
-
-  // Update current slide on scroll
-  useEffect(() => {
-    const slider = sliderRef.current;
-    if (!slider) return;
-
-    const handleScroll = () => {
-      const cardWidth = window.innerWidth >= 768 ? 340 : 240;
-      const gap = window.innerWidth >= 768 ? 32 : 24;
-      const scrollPosition = slider.scrollLeft;
-      const newIndex = Math.round(scrollPosition / (cardWidth + gap));
-      setCurrentSlide(newIndex);
-    };
-
-    slider.addEventListener("scroll", handleScroll);
-    return () => slider.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scroll = (direction) => {
+  // Update current slide on scroll with throttling
+  useEffect(() => {
+    const slider = sliderRef.current;
+    if (!slider || !isVisible) return;
+
+    let timeoutId;
+    const handleScroll = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        const cardWidth = window.innerWidth >= 768 ? 340 : 240;
+        const gap = window.innerWidth >= 768 ? 32 : 24;
+        const scrollPosition = slider.scrollLeft;
+        const newIndex = Math.round(scrollPosition / (cardWidth + gap));
+        setCurrentSlide(newIndex);
+      }, 16); // ~60fps
+    };
+
+    slider.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      slider.removeEventListener("scroll", handleScroll);
+      clearTimeout(timeoutId);
+    };
+  }, [isVisible]);
+
+  const scroll = useCallback((direction) => {
     const { current } = sliderRef;
     if (current) {
       // Calculate scroll amount based on card width plus gap
@@ -100,7 +126,7 @@ const ProductSlider = () => {
         behavior: "smooth",
       });
     }
-  };
+  }, []);
 
   return (
     <section className="w-full overflow-x-hidden py-12 md:py-16 lg:py-20 px-2 md:px-4 bg-gradient-to-b from-gray-50 to-cyan-50 min-h-[520px] md:min-h-[700px] flex flex-col justify-center">
@@ -108,15 +134,14 @@ const ProductSlider = () => {
         <div className="flex flex-col items-center justify-center mb-12 relative py-8">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-32 bg-gradient-to-r from-purple-200/20 via-cyan-200/20 to-purple-200/20 blur-3xl -z-10"></div>
           <div className="flex items-center gap-3 mb-2">
-  <BsStars className="text-2xl md:text-3xl text-cyan-400 animate-pulse" />
-  <h2 className="text-4xl md:text-5xl font-bold text-center relative tracking-wide leading-normal">
-    <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-      CP TECH Products
-    </span>
-  </h2>
-  <BsStars className="text-2xl md:text-3xl text-cyan-400 animate-pulse" />
-</div>
-
+            <BsStars className="text-2xl md:text-3xl text-cyan-400 animate-pulse" />
+            <h2 className="text-4xl md:text-5xl font-bold text-center relative tracking-wide leading-normal">
+              <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                CP TECH Products
+              </span>
+            </h2>
+            <BsStars className="text-2xl md:text-3xl text-cyan-400 animate-pulse" />
+          </div>
 
           <div className="h-1 w-24 bg-gradient-cyan-purple rounded-full mb-4"></div>
           <Link
@@ -135,8 +160,14 @@ const ProductSlider = () => {
             className="absolute left-4 top-1/2 -translate-y-1/2 flex-shrink-0 bg-white/70 backdrop-blur-sm shadow-2xl w-12 h-12 rounded-full hover:bg-gradient-to-r hover:from-cyan-200 hover:to-purple-200 transition-all duration-300 transform hover:scale-125 cursor-pointer group border border-gray-200 z-30 flex items-center justify-center"
             aria-label="Scroll Left"
           >
-            <svg className="w-8 h-8 text-cyan-600 group-hover:text-purple-600 transition-colors duration-300" viewBox="0 0 24 24">
-              <path fill="currentColor" d="M19 12a1 1 0 0 1-1 1H8.414l1.293 1.293a1 1 0 0 1-1.414 1.414l-3-3a1 1 0 0 1 0-1.414l3-3a1 1 0 0 1 1.414 1.414L8.414 11H18a1 1 0 0 1 1 1z"/>
+            <svg
+              className="w-8 h-8 text-cyan-600 group-hover:text-purple-600 transition-colors duration-300"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="currentColor"
+                d="M19 12a1 1 0 0 1-1 1H8.414l1.293 1.293a1 1 0 0 1-1.414 1.414l-3-3a1 1 0 0 1 0-1.414l3-3a1 1 0 0 1 1.414 1.414L8.414 11H18a1 1 0 0 1 1 1z"
+              />
             </svg>
           </button>
 
@@ -182,6 +213,7 @@ const ProductSlider = () => {
                       src={product.image}
                       alt={product.name}
                       className="w-full h-full object-contain drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
+                      loading={isVisible ? "eager" : "lazy"}
                     />
                   </div>
                   <h3 className="text-lg md:text-xl font-bold text-gray-800 text-center mb-2 group-hover:text-cyan-custom transition-colors">
@@ -198,14 +230,21 @@ const ProductSlider = () => {
             className="absolute right-4 top-1/2 -translate-y-1/2 flex-shrink-0 bg-white/70 backdrop-blur-sm shadow-2xl w-12 h-12 rounded-full hover:bg-gradient-to-r hover:from-cyan-200 hover:to-purple-200 transition-all duration-300 transform hover:scale-125 cursor-pointer group border border-gray-200 z-30 flex items-center justify-center"
             aria-label="Scroll Right"
           >
-            <svg className="w-8 h-8 text-cyan-600 group-hover:text-purple-600 transition-colors duration-300" viewBox="0 0 24 24" style={{transform: 'scaleX(-1)'}}>
-              <path fill="currentColor" d="M19 12a1 1 0 0 1-1 1H8.414l1.293 1.293a1 1 0 0 1-1.414 1.414l-3-3a1 1 0 0 1 0-1.414l3-3a1 1 0 0 1 1.414 1.414L8.414 11H18a1 1 0 0 1 1 1z"/>
+            <svg
+              className="w-8 h-8 text-cyan-600 group-hover:text-purple-600 transition-colors duration-300"
+              viewBox="0 0 24 24"
+              style={{ transform: "scaleX(-1)" }}
+            >
+              <path
+                fill="currentColor"
+                d="M19 12a1 1 0 0 1-1 1H8.414l1.293 1.293a1 1 0 0 1-1.414 1.414l-3-3a1 1 0 0 1 0-1.414l3-3a1 1 0 0 1 1.414 1.414L8.414 11H18a1 1 0 0 1 1 1z"
+              />
             </svg>
           </button>
         </div>
       </div>
     </section>
   );
-};
+});
 
 export default ProductSlider;

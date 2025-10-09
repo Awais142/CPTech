@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, memo, useCallback } from "react";
 
-const VideoSlider = () => {
+const VideoSlider = memo(() => {
   const videos = [
     {
       id: 1,
@@ -58,25 +58,43 @@ const VideoSlider = () => {
 
   const [activeIndex, setActiveIndex] = useState(BUFFER_SIZE);
   const [isTransitioning, setIsTransitioning] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const sliderRef = useRef(null);
 
+  // Intersection Observer for lazy loading
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
 
-  const nextSlide = () => {
+    if (sliderRef.current) {
+      observer.observe(sliderRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  const nextSlide = useCallback(() => {
     if (isTransitioning) return;
     setIsTransitioning(true);
     setActiveIndex((prev) => prev + 1);
-  };
+  }, [isTransitioning]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     if (isTransitioning) return;
     setIsTransitioning(true);
     setActiveIndex((prev) => prev - 1);
-  };
+  }, [isTransitioning]);
 
-  const handlePaginationClick = (index) => {
+  const handlePaginationClick = useCallback((index) => {
     setIsTransitioning(true);
     setActiveIndex(index + BUFFER_SIZE);
-  };
+  }, []);
 
   useEffect(() => {
     if (!isTransitioning) return;
@@ -113,8 +131,12 @@ const VideoSlider = () => {
         ref={sliderRef}
         className={`flex h-full w-full items-center justify-center`}
         style={{
-          transform: `translateX(calc(-${activeIndex * STEP_VW}vw + ${CENTER_PAD_VW}vw))`,
-          transition: `transform ${isTransitioning ? '0.5s ease-in-out' : '0s'}`,
+          transform: `translateX(calc(-${
+            activeIndex * STEP_VW
+          }vw + ${CENTER_PAD_VW}vw))`,
+          transition: `transform ${
+            isTransitioning ? "0.5s ease-in-out" : "0s"
+          }`,
         }}
       >
         {/* Leading spacer so the first slide can be centered */}
@@ -138,14 +160,14 @@ const VideoSlider = () => {
               }}
             >
               <video
-                src={video.videoUrl}
+                src={isVisible ? video.videoUrl : undefined}
                 poster={video.poster}
                 className="w-full h-full object-cover"
-                autoPlay
+                autoPlay={isVisible}
                 muted
                 loop
                 playsInline
-                preload="metadata"
+                preload={isVisible ? "metadata" : "none"}
               />
               {/* Gradient and texts overlay */}
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10" />
@@ -174,8 +196,14 @@ const VideoSlider = () => {
         className="absolute left-4 top-1/2 -translate-y-1/2 flex-shrink-0 bg-white/70 backdrop-blur-sm shadow-2xl w-12 h-12 rounded-full hover:bg-gradient-to-r hover:from-cyan-200 hover:to-purple-200 transition-all duration-300 transform hover:scale-125 cursor-pointer group border border-gray-200 z-30 flex items-center justify-center"
         aria-label="Previous"
       >
-        <svg className="w-8 h-8 text-cyan-600 group-hover:text-purple-600 transition-colors duration-300" viewBox="0 0 24 24">
-          <path fill="currentColor" d="M19 12a1 1 0 0 1-1 1H8.414l1.293 1.293a1 1 0 0 1-1.414 1.414l-3-3a1 1 0 0 1 0-1.414l3-3a1 1 0 0 1 1.414 1.414L8.414 11H18a1 1 0 0 1 1 1z"/>
+        <svg
+          className="w-8 h-8 text-cyan-600 group-hover:text-purple-600 transition-colors duration-300"
+          viewBox="0 0 24 24"
+        >
+          <path
+            fill="currentColor"
+            d="M19 12a1 1 0 0 1-1 1H8.414l1.293 1.293a1 1 0 0 1-1.414 1.414l-3-3a1 1 0 0 1 0-1.414l3-3a1 1 0 0 1 1.414 1.414L8.414 11H18a1 1 0 0 1 1 1z"
+          />
         </svg>
       </button>
       <button
@@ -183,8 +211,15 @@ const VideoSlider = () => {
         className="absolute right-4 top-1/2 -translate-y-1/2 flex-shrink-0 bg-white/70 backdrop-blur-sm shadow-2xl w-12 h-12 rounded-full hover:bg-gradient-to-r hover:from-cyan-200 hover:to-purple-200 transition-all duration-300 transform hover:scale-125 cursor-pointer group border border-gray-200 z-30 flex items-center justify-center"
         aria-label="Next"
       >
-        <svg className="w-8 h-8 text-cyan-600 group-hover:text-purple-600 transition-colors duration-300" viewBox="0 0 24 24" style={{transform: 'scaleX(-1)'}}>
-          <path fill="currentColor" d="M19 12a1 1 0 0 1-1 1H8.414l1.293 1.293a1 1 0 0 1-1.414 1.414l-3-3a1 1 0 0 1 0-1.414l3-3a1 1 0 0 1 1.414 1.414L8.414 11H18a1 1 0 0 1 1 1z"/>
+        <svg
+          className="w-8 h-8 text-cyan-600 group-hover:text-purple-600 transition-colors duration-300"
+          viewBox="0 0 24 24"
+          style={{ transform: "scaleX(-1)" }}
+        >
+          <path
+            fill="currentColor"
+            d="M19 12a1 1 0 0 1-1 1H8.414l1.293 1.293a1 1 0 0 1-1.414 1.414l-3-3a1 1 0 0 1 0-1.414l3-3a1 1 0 0 1 1.414 1.414L8.414 11H18a1 1 0 0 1 1 1z"
+          />
         </svg>
       </button>
 
@@ -195,7 +230,8 @@ const VideoSlider = () => {
             key={index}
             onClick={() => handlePaginationClick(index)}
             className={`h-2 rounded-full transition-all duration-300 ${
-              index === (activeIndex - BUFFER_SIZE + videos.length) % videos.length
+              index ===
+              (activeIndex - BUFFER_SIZE + videos.length) % videos.length
                 ? "w-6 bg-gradient-to-r from-cyan-500 to-purple-500"
                 : "w-2 bg-white/50 hover:bg-gradient-to-r hover:from-cyan-400/70 hover:to-purple-400/70"
             }`}
@@ -205,6 +241,6 @@ const VideoSlider = () => {
       </div>
     </div>
   );
-};
+});
 
 export default VideoSlider;

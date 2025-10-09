@@ -1,9 +1,28 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, memo, useCallback } from "react";
 import videoSrc from "../assets/companyvideo.mp4";
 
-const CompanyVideo = () => {
+const CompanyVideo = memo(() => {
   const videoRef = useRef(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Intersection Observer for lazy loading
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   // Handle ESC key to close modal
   useEffect(() => {
@@ -23,14 +42,15 @@ const CompanyVideo = () => {
       <div className="relative w-full h-[100vh] overflow-hidden">
         {/* Background video - landscape, covers area, high quality */}
         <video
-          src={videoSrc}
+          ref={videoRef}
+          src={isVisible ? videoSrc : undefined}
           className="w-full h-full object-cover brightness-90"
-          autoPlay
+          autoPlay={isVisible}
           loop
           muted
           playsInline
-          preload="auto"
-          style={{ filter: 'contrast(1.1) saturate(1.1)' }}
+          preload={isVisible ? "auto" : "none"}
+          style={{ filter: "contrast(1.1) saturate(1.1)" }}
         />
         {/* Overlay Button */}
         <div className="absolute inset-0 flex items-end justify-center pb-10 pointer-events-none">
@@ -40,8 +60,19 @@ const CompanyVideo = () => {
             style={{ zIndex: 2 }}
           >
             WATCH VIDEO
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25m0 0A2.25 2.25 0 0013.5 3h-3A2.25 2.25 0 008.25 5.25v13.5A2.25 2.25 0 0010.5 21h3a2.25 2.25 0 002.25-2.25V15" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 9V5.25m0 0A2.25 2.25 0 0013.5 3h-3A2.25 2.25 0 008.25 5.25v13.5A2.25 2.25 0 0010.5 21h3a2.25 2.25 0 002.25-2.25V15"
+              />
             </svg>
           </button>
         </div>
@@ -61,15 +92,26 @@ const CompanyVideo = () => {
                 autoPlay
                 playsInline
                 preload="auto"
-                style={{ background: '#000' }}
+                style={{ background: "#000" }}
               />
               <button
                 className="absolute top-2 right-2 text-white bg-black/60 hover:bg-black/90 rounded-full w-10 h-10 flex items-center justify-center z-10"
                 onClick={() => setModalOpen(false)}
                 aria-label="Close video"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               </button>
             </div>
@@ -78,6 +120,6 @@ const CompanyVideo = () => {
       </div>
     </section>
   );
-};
+});
 
 export default CompanyVideo;
