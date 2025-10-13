@@ -1,37 +1,8 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Lenis from "@studio-freight/lenis";
 
 const SmokeAnimationSection = () => {
   const containerRef = useRef(null);
-
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: "vertical",
-      smooth: true,
-      smoothTouch: false,
-      touchMultiplier: 2,
-      infinite: false,
-    });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    // Update Framer Motion's scroll values
-    lenis.on("scroll", ({ scroll }) => {
-      window.scrollY = scroll;
-    });
-
-    return () => {
-      lenis.destroy();
-    };
-  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -104,12 +75,12 @@ const SmokeAnimationSection = () => {
   });
 
   // Smoke particle animations
-  const smokeParticles = Array.from({ length: 15 }, (_, i) => {
+  const smokeParticles = Array.from({ length: 6 }, (_, i) => {
     const delay = i * 0.5;
     const duration = 8 + Math.random() * 4;
     const startX = Math.random() * 100;
     const startY = 100 + Math.random() * 20;
-    
+
     return {
       id: i,
       delay,
@@ -131,7 +102,7 @@ const SmokeAnimationSection = () => {
         <div className="absolute inset-0">
           {/* Smoke-like gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500/60 via-purple-500/60 to-blue-500/60"></div>
-          
+
           {/* Animated Smoke Particles */}
           {smokeParticles.map((particle) => (
             <motion.div
@@ -184,7 +155,7 @@ const SmokeAnimationSection = () => {
 
         {/* Additional Smoke Effect Overlay */}
         <div className="absolute inset-0 pointer-events-none">
-          {Array.from({ length: 8 }, (_, i) => (
+          {Array.from({ length: 4 }, (_, i) => (
             <motion.div
               key={i}
               className="absolute w-32 h-32 bg-gradient-to-r from-blue-300/40 to-purple-300/40 rounded-full blur-2xl"

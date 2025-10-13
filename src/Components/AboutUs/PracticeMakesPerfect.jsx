@@ -1,37 +1,8 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Lenis from "@studio-freight/lenis";
 
 const PracticeMakesPerfect = () => {
   const containerRef = useRef(null);
-
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: "vertical",
-      smooth: true,
-      smoothTouch: false,
-      touchMultiplier: 2,
-      infinite: false,
-    });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    // Update Framer Motion's scroll values
-    lenis.on("scroll", ({ scroll }) => {
-      window.scrollY = scroll;
-    });
-
-    return () => {
-      lenis.destroy();
-    };
-  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -42,45 +13,45 @@ const PracticeMakesPerfect = () => {
     {
       text: "Practice Makes Perfect",
       className:
-        "text-[56px] md:text-[96px] font-bold mb-12 tracking-tight drop-shadow-2xl max-w-[1000px] mx-auto",
+        "text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 sm:mb-8 md:mb-12 tracking-tight drop-shadow-2xl max-w-[1000px] mx-auto",
     },
     {
       text: "CP Tech is more than a good wish; it's a commitment rooted in solid ground as we believe all greatness comes from little steps.",
       className:
-        "text-[28px] md:text-[42px] font-medium leading-relaxed drop-shadow-lg max-w-[1200px] mx-auto",
+        "text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium leading-relaxed drop-shadow-lg max-w-[1200px] mx-auto",
     },
     {
       text: "Seeking progress and excellence prompts us to achieve self-breakthroughs continuously.",
       className:
-        "text-[28px] md:text-[42px] font-medium leading-relaxed drop-shadow-lg max-w-[1200px] mx-auto",
+        "text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium leading-relaxed drop-shadow-lg max-w-[1200px] mx-auto",
     },
     {
       text: "We believe that product innovation comes from users' perspectives and brings them excellent experiences.",
       className:
-        "text-[28px] md:text-[42px] font-medium leading-relaxed drop-shadow-lg max-w-[1200px] mx-auto",
+        "text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium leading-relaxed drop-shadow-lg max-w-[1200px] mx-auto",
     },
     {
       text: "We believe that a bright future is based on a series of sustainable choices. CP Tech will always be the pioneer of better lifestyles.",
       className:
-        "text-[28px] md:text-[42px] font-medium leading-relaxed drop-shadow-lg max-w-[1200px] mx-auto",
+        "text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium leading-relaxed drop-shadow-lg max-w-[1200px] mx-auto",
     },
   ];
 
   const createTextTransform = (startPoint, endPoint) => ({
     opacity: useTransform(
       scrollYProgress,
-      [startPoint, startPoint + 0.15, endPoint - 0.15, endPoint],
+      [startPoint, startPoint + 0.1, endPoint - 0.1, endPoint],
       [0, 1, 1, 0]
     ),
     y: useTransform(
       scrollYProgress,
-      [startPoint, startPoint + 0.15, endPoint - 0.15, endPoint],
-      [100, 0, 0, -100]
+      [startPoint, startPoint + 0.1, endPoint - 0.1, endPoint],
+      [50, 0, 0, -50]
     ),
     scale: useTransform(
       scrollYProgress,
-      [startPoint, startPoint + 0.15, endPoint - 0.15, endPoint],
-      [0.8, 1, 1, 0.8]
+      [startPoint, startPoint + 0.1, endPoint - 0.1, endPoint],
+      [0.9, 1, 1, 0.9]
     ),
   });
 
@@ -96,22 +67,22 @@ const PracticeMakesPerfect = () => {
     <section
       ref={containerRef}
       className="relative min-h-screen bg-black"
-      style={{ height: `${practiceTexts.length * 120}vh` }}
+      style={{ height: `${practiceTexts.length * 100}vh` }}
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         {/* Smoke Background */}
         <div className="absolute inset-0">
           {/* Smoke-like gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/80 via-purple-500/80 to-cyan-500/80"></div>
-          
+
           {/* Animated Smoke Particles */}
-          {Array.from({ length: 20 }, (_, i) => {
+          {Array.from({ length: 8 }, (_, i) => {
             const delay = i * 0.3;
             const duration = 5 + Math.random() * 2;
             const startX = Math.random() * 100;
             const startY = 100 + Math.random() * 20;
             const size = 25 + Math.random() * 50;
-            
+
             return (
               <motion.div
                 key={i}
@@ -137,9 +108,9 @@ const PracticeMakesPerfect = () => {
               />
             );
           })}
-          
+
           {/* Additional Smoke Effect Overlay */}
-          {Array.from({ length: 10 }, (_, i) => (
+          {Array.from({ length: 5 }, (_, i) => (
             <motion.div
               key={i}
               className="absolute w-40 h-40 bg-gradient-to-r from-cyan-300/60 to-purple-300/60 rounded-full blur-2xl"
@@ -165,7 +136,7 @@ const PracticeMakesPerfect = () => {
 
         {/* Content */}
         <div className="relative z-10 h-full flex items-center justify-center">
-          <div className="w-full max-w-[90%] 2xl:max-w-[1400px] mx-auto px-6 text-center text-white">
+          <div className="w-full max-w-[95%] 2xl:max-w-[1400px] mx-auto px-4 sm:px-6 text-center text-white">
             {practiceTexts.map((item, i) => (
               <motion.p
                 key={i}

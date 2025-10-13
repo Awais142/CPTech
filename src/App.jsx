@@ -13,27 +13,30 @@ import AgeVerifier from "./Components/AgeVerifier";
 import ContactUs from "./Pages/ContactUs";
 import AboutUs from "./Pages/AboutUs";
 import LazyHomePage from "./Components/LazyHomePage";
+import { LenisProvider } from "./Components/LenisProvider";
 // Use the optimized LazyHomePage component
 const HomePage = LazyHomePage;
 
 function App() {
   return (
-    <Router>
-      <AgeVerifier />
-      <Toolbar />
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/products" element={<AllProducts />} />
-        <Route path="/product/:id" element={<ProductPage />} />
-        <Route path="/cp-15k" element={<CPFifteenK />} />
-        <Route path="/cp-twist" element={<CPTwist />} />
-        <Route path="/contact" element={<ContactUs />} />
-        <Route path="/about" element={<AboutUs />} />
-      </Routes>
-      <Footer />
-      <GoToTop />
-    </Router>
+    <LenisProvider>
+      <Router>
+        <AgeVerifier />
+        <Toolbar />
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/products" element={<AllProducts />} />
+          <Route path="/product/:id" element={<ProductPage />} />
+          <Route path="/cp-15k" element={<CPFifteenK />} />
+          <Route path="/cp-twist" element={<CPTwist />} />
+          <Route path="/contact" element={<ContactUs />} />
+          <Route path="/about" element={<AboutUs />} />
+        </Routes>
+        <Footer />
+        <GoToTop />
+      </Router>
+    </LenisProvider>
   );
 }
 
