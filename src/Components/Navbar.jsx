@@ -39,7 +39,7 @@ const products = [
 const navLinks = [
   { label: "Product", dropdown: true },
   { label: "What's CP Tech", link: "/about" },
-  { label: "Support", dropdown: true },
+  { label: "Global Presence", link: "/global-presence" },
 ];
 
 const Navbar = () => {
