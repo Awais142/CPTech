@@ -13,7 +13,7 @@ import AgeVerifier from "./Components/AgeVerifier";
 import ContactUs from "./Pages/ContactUs";
 import AboutUs from "./Pages/AboutUs";
 import GlobalPresence from "./Pages/GlobalPresence";
-import CountryPage from "./Components/CountryPage/CountryPage";
+import CountryPage from "./Pages/CountryPage";
 import LazyHomePage from "./Components/LazyHomePage";
 import { LenisProvider } from "./Components/LenisProvider";
 // Use the optimized LazyHomePage component

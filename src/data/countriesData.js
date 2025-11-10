@@ -5,8 +5,16 @@ export const countriesData = {
     name: "United Kingdom",
     slug: "united-kingdom",
     flag: "🇬🇧",
+    currency: "GBP",
+    currencySymbol: "£",
     image:
       "https://images.pexels.com/photos/460672/pexels-photo-460672.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
+    products: [
+      { id: 1, name: "CP® 15K Pro", price: 12.99, image: "/src/assets/images/15K1.png" },
+      { id: 2, name: "CP® Flow Bar 25K", price: 14.99, image: "/src/assets/images/Flowbar25k.png" },
+      { id: 3, name: "CP® Crystal CP 600", price: 17.99, image: "/src/assets/images/crystalcp600.png" },
+      { id: 4, name: "CP® Crystal Pro 600", price: 19.99, image: "/src/assets/images/crystalpro600.png" },
+    ],
     highlights: `CP Tech International kicked off back in 2019, right in the heart of Manchester a city famous for its bold spirit and no-nonsense attitude. Starting out as a small, local outfit, we had a clear goal to redefine modern vaping for everyday vapers across the UK.
 
 At a time when the market was absolutely swamped, we noticed something was missing: proper quality, honest flavours, and a real connection with the vaping community. We weren't just another brand we wanted to build something people could truly trust, with consistency and innovation at its core.
@@ -39,8 +47,16 @@ Though we've grown far and wide, Manchester's still where it's at for us. It's t
     name: "Spain",
     slug: "spain",
     flag: "🇪🇸",
+    currency: "EUR",
+    currencySymbol: "€",
     image:
       "https://images.pexels.com/photos/1388030/pexels-photo-1388030.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
+    products: [
+      { id: 1, name: "CP® 15K Pro", price: 14.99, image: "/src/assets/images/15K1.png" },
+      { id: 2, name: "CP® Flow Bar 25K", price: 17.99, image: "/src/assets/images/Flowbar25k.png" },
+      { id: 3, name: "CP® Crystal CP 600", price: 20.99, image: "/src/assets/images/crystalcp600.png" },
+      { id: 4, name: "CP® Crystal Pro 600", price: 22.99, image: "/src/assets/images/crystalpro600.png" },
+    ],
     highlights: `By 2021, CP Tech International was gaining serious traction and then came the game changer the launch of our now iconic Crystal Pro series. What started as a product quickly became a movement across Europe. Crystal Pro didn't just introduce a new device it redefined the vaping experience for thousands.
 The response? Masivo.
 Vapers across the continent embraced the design, flavour, and power calling it "el vaporizador que lo cambió todo."
@@ -66,8 +82,16 @@ Es parte de nuestra historia, powered by our local team and driven by a relentle
     name: "United States",
     slug: "united-states",
     flag: "🇺🇸",
+    currency: "USD",
+    currencySymbol: "$",
     image:
       "https://images.pexels.com/photos/208745/pexels-photo-208745.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
+    products: [
+      { id: 1, name: "CP® 15K Pro", price: 12.99, image: "/src/assets/images/15K1.png" },
+      { id: 2, name: "CP® Flow Bar 25K", price: 14.99, image: "/src/assets/images/Flowbar25k.png" },
+      { id: 3, name: "CP® Crystal CP 600", price: 17.99, image: "/src/assets/images/crystalcp600.png" },
+      { id: 4, name: "CP® Crystal Pro 600", price: 19.99, image: "/src/assets/images/crystalpro600.png" },
+    ],
     highlights: `CP Tech International entered the United States market in 2021, recognizing the massive potential and diverse vaping community across all 50 states. With a commitment to quality and innovation, we set out to make our mark in one of the world's largest vaping markets.
 
 Our expansion into the US wasn't just about selling products—it was about understanding the unique needs of American vapers. From the tech-savvy enthusiasts on the West Coast to the flavor connoisseurs in the South, we've built a network that respects regional preferences while maintaining our global standards of excellence.
@@ -87,8 +111,16 @@ The American market has embraced our Crystal Pro series and innovative product l
     name: "United Arab Emirates",
     slug: "united-arab-emirates",
     flag: "🇦🇪",
+    currency: "AED",
+    currencySymbol: "د.إ",
     image:
       "https://images.pexels.com/photos/3787839/pexels-photo-3787839.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
+    products: [
+      { id: 1, name: "CP® 15K Pro", price: 47.99, image: "/src/assets/images/15K1.png" },
+      { id: 2, name: "CP® Flow Bar 25K", price: 54.99, image: "/src/assets/images/Flowbar25k.png" },
+      { id: 3, name: "CP® Crystal CP 600", price: 65.99, image: "/src/assets/images/crystalcp600.png" },
+      { id: 4, name: "CP® Crystal Pro 600", price: 73.99, image: "/src/assets/images/crystalpro600.png" },
+    ],
     highlights: `CP Tech International expanded its presence into the UAE IN 2023, a fast growing hub for vaping culture, innovation, and opportunity in the Middle East.
 This expansion wasn't just about entering a new market it was about offering a fresh perspective on vaping. That year, we launched a line of fully customisable vape products, developed by a team of over 40 dedicated industry experts. Every detail, from flavour profiles to device design, was carefully crafted to meet the diverse tastes of global customers, with the UAE as a key focus a true "مركز الابتكار" (centre of innovation).
 Establishing a solid presence in the UAE allowed us to work closely with regional distributors, retailers, and the vibrant vaping community, strengthening our reputation as a leader in quality and innovation.
@@ -117,8 +149,16 @@ Today, the UAE is more than just a market for CP Tech it's a place where innovat
     name: "Pakistan",
     slug: "pakistan",
     flag: "🇵🇰",
+    currency: "PKR",
+    currencySymbol: "₨",
     image:
       "https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
+    products: [
+      { id: 1, name: "CP® 15K Pro", price: 3599, image: "/src/assets/images/15K1.png" },
+      { id: 2, name: "CP® Flow Bar 25K", price: 4199, image: "/src/assets/images/Flowbar25k.png" },
+      { id: 3, name: "CP® Crystal CP 600", price: 4999, image: "/src/assets/images/crystalcp600.png" },
+      { id: 4, name: "CP® Crystal Pro 600", price: 5599, image: "/src/assets/images/crystalpro600.png" },
+    ],
     highlights: `In 2024, CP Tech International officially touched down in Pakistan, bringing with it a bold new vision: to make premium, globally trusted vaping products accessible to every corner of the country.
 We launched with a bang unveiling a powerful online store offering nationwide delivery, making it easier than ever for customers across Pakistan to experience the quality and innovation we're known for. But we didn't stop there.
 That same year, we opened the doors to three flagship outlets right in the heart of Islamabad more than just stores, they became spaces for community, education, and experience. Whether it's first-time users or long time enthusiasts, our outlets were designed to offer hands on guidance, local support, and global-grade products under one roof.
