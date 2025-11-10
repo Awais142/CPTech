@@ -12,6 +12,7 @@ import {
   FaChevronRight,
 } from "react-icons/fa";
 import { BsStars } from "react-icons/bs";
+import { countriesList, countriesData } from "../data/countriesData";
 
 const Footer = () => {
   const productLinks = [
@@ -22,19 +23,10 @@ const Footer = () => {
   ];
 
   const companyLinks = [
-    { name: "About Us", link: "#" },
-    { name: "Our Vision", link: "#" },
-    { name: "What's CP Tech", link: "#" },
-    { name: "Careers", link: "#" },
-    { name: "Press & Media", link: "#" },
-  ];
-
-  const supportLinks = [
-    { name: "Customer Support", link: "#" },
-    { name: "User Manual", link: "#" },
-    { name: "Warranty", link: "#" },
-    { name: "Returns & Exchanges", link: "#" },
-    { name: "FAQ", link: "#" },
+    { name: "What's CP Tech", link: "/about" },
+    { name: "Products", link: "/products" },
+    { name: "Global Presence", link: "/global-presence" },
+    { name: "Contact Us", link: "/contact" },
   ];
 
   const legalLinks = [
@@ -68,6 +60,34 @@ const Footer = () => {
                 crystal pro devices. Experience premium quality, cutting-edge
                 design, and exceptional performance.
               </p>
+
+              {/* Contact Information */}
+              <div className="space-y-3 mb-6">
+                <div className="flex items-start gap-3 text-gray-300">
+                  <FaMapMarkerAlt className="text-cyan-custom mt-1 flex-shrink-0" />
+                  <span className="text-sm">
+                    {countriesData.uk.address}
+                  </span>
+                </div>
+                <div className="flex items-center gap-3 text-gray-300">
+                  <FaPhone className="text-cyan-custom flex-shrink-0" />
+                  <a
+                    href={`tel:${countriesData.uk.phone}`}
+                    className="text-sm hover:text-cyan-custom transition-colors"
+                  >
+                    {countriesData.uk.phone}
+                  </a>
+                </div>
+                <div className="flex items-center gap-3 text-gray-300">
+                  <FaEnvelope className="text-cyan-custom flex-shrink-0" />
+                  <a
+                    href={`mailto:${countriesData.uk.email}`}
+                    className="text-sm hover:text-cyan-custom transition-colors"
+                  >
+                    {countriesData.uk.email}
+                  </a>
+                </div>
+              </div>
 
               {/* Social Media Links */}
               <div className="flex gap-4">
@@ -119,55 +139,38 @@ const Footer = () => {
               <ul className="space-y-3">
                 {companyLinks.map((link, idx) => (
                   <li key={idx}>
-                    <a
-                      href={link.link}
+                    <Link
+                      to={link.link}
                       className="text-gray-300 hover:text-cyan-custom transition-colors duration-300 flex items-center gap-2 group"
                     >
                       <FaChevronRight className="text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       {link.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Support & Contact Section */}
+            {/* Countries Section */}
             <div>
               <h3 className="text-lg font-bold mb-6 text-white flex items-center gap-2">
                 <span className="w-1 h-6 bg-gradient-to-b from-cyan-custom to-purple-custom rounded-full"></span>
-                Support
+                Countries
               </h3>
-              <ul className="space-y-3 mb-8">
-                {supportLinks.map((link, idx) => (
+              <ul className="space-y-3">
+                {countriesList.map((country, idx) => (
                   <li key={idx}>
-                    <a
-                      href={link.link}
+                    <Link
+                      to={`/country/${country.slug}`}
                       className="text-gray-300 hover:text-cyan-custom transition-colors duration-300 flex items-center gap-2 group"
                     >
+                      <span className="text-lg">{country.flag || "🌍"}</span>
                       <FaChevronRight className="text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      {link.name}
-                    </a>
+                      {country.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
-
-              {/* Contact Info */}
-              <div className="space-y-3">
-                <div className="flex items-start gap-3 text-gray-300">
-                  <FaMapMarkerAlt className="text-cyan-custom mt-1 flex-shrink-0" />
-                  <span className="text-sm">
-                    123 Tech Street, Innovation City, TC 12345
-                  </span>
-                </div>
-                <div className="flex items-center gap-3 text-gray-300">
-                  <FaPhone className="text-cyan-custom flex-shrink-0" />
-                  <span className="text-sm">+1 (555) 123-4567</span>
-                </div>
-                <div className="flex items-center gap-3 text-gray-300">
-                  <FaEnvelope className="text-cyan-custom flex-shrink-0" />
-                  <span className="text-sm">support@cptech.com</span>
-                </div>
-              </div>
             </div>
           </div>
 

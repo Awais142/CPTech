@@ -223,7 +223,11 @@ const Navbar = () => {
         >
           <ul className="flex flex-col gap-4 text-lg font-semibold">
             <li className="cursor-pointer text-white/90 hover:text-cyan-custom transition-colors duration-300 py-2 px-3 rounded-lg hover:bg-cyan-custom/10">
-              <Link to="/" className="no-underline text-inherit">
+              <Link
+                to="/"
+                className="no-underline text-inherit"
+                onClick={() => setMobileOpen(false)}
+              >
                 Home
               </Link>
             </li>
@@ -242,7 +246,9 @@ const Navbar = () => {
                           className="text-white/80 hover:text-cyan-custom transition-colors duration-300 py-1 px-3 rounded-lg hover:bg-cyan-custom/10 flex items-center gap-2 no-underline"
                           onClick={() => setMobileOpen(false)}
                         >
-                          <span className="text-lg">{country.flag || "🌍"}</span>
+                          <span className="text-lg">
+                            {country.flag || "🌍"}
+                          </span>
                           <span>{country.name}</span>
                         </Link>
                       ))}
@@ -252,6 +258,15 @@ const Navbar = () => {
                   <Link
                     to={link.link}
                     className="cursor-pointer text-white/90 hover:text-cyan-custom transition-colors duration-300 py-2 px-3 rounded-lg hover:bg-cyan-custom/10 block no-underline"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                ) : link.label === "Product" ? (
+                  <Link
+                    to="/products"
+                    className="cursor-pointer text-white/90 hover:text-cyan-custom transition-colors duration-300 py-2 px-3 rounded-lg hover:bg-cyan-custom/10 block no-underline"
+                    onClick={() => setMobileOpen(false)}
                   >
                     {link.label}
                   </Link>
@@ -263,7 +278,11 @@ const Navbar = () => {
               </li>
             ))}
             <li className="cursor-pointer text-white/90 hover:text-cyan-custom transition-colors duration-300 py-2 px-3 rounded-lg hover:bg-cyan-custom/10">
-              <Link to="/contact" className="no-underline text-inherit">
+              <Link
+                to="/contact"
+                className="no-underline text-inherit"
+                onClick={() => setMobileOpen(false)}
+              >
                 Contact
               </Link>
             </li>

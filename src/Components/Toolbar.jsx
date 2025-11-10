@@ -9,7 +9,7 @@ const Toolbar = () => {
   );
 
   return (
-    <div className="w-full bg-red-100 text-red-900 overflow-hidden py-2 border-b border-red-200 shadow-sm">
+    <div className="w-full bg-gradient-to-r from-slate-700 via-slate-600 to-slate-700 text-white overflow-hidden py-2 border-b border-slate-500/30 shadow-sm">
       <div className="marquee-container flex whitespace-nowrap">
         <div className="marquee-content animate-scroll-left flex-shrink-0">
           {warningText}
