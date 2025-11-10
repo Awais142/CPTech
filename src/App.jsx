@@ -13,6 +13,7 @@ import AgeVerifier from "./Components/AgeVerifier";
 import ContactUs from "./Pages/ContactUs";
 import AboutUs from "./Pages/AboutUs";
 import GlobalPresence from "./Pages/GlobalPresence";
+import CountryPage from "./Components/CountryPage/CountryPage";
 import LazyHomePage from "./Components/LazyHomePage";
 import { LenisProvider } from "./Components/LenisProvider";
 // Use the optimized LazyHomePage component
@@ -34,6 +35,7 @@ function App() {
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/global-presence" element={<GlobalPresence />} />
+          <Route path="/country/:countrySlug" element={<CountryPage />} />
         </Routes>
         <Footer />
         <GoToTop />

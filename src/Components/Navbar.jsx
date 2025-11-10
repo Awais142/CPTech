@@ -7,6 +7,7 @@ import img15k1 from "../assets/images/15K1.png";
 import imgflowbar25k from "../assets/images/Flowbar25k.png";
 import imgcrystalcp600 from "../assets/images/crystalcp600.png";
 import imgcrystalpro600 from "../assets/images/crystalpro600.png";
+import { countriesList } from "../data/countriesData";
 
 // Use imported product images
 const products = [
@@ -40,6 +41,7 @@ const navLinks = [
   { label: "Product", dropdown: true },
   { label: "What's CP Tech", link: "/about" },
   { label: "Global Presence", link: "/global-presence" },
+  { label: "Country", dropdown: true, isCountry: true },
 ];
 
 const Navbar = () => {
@@ -102,6 +104,23 @@ const Navbar = () => {
                     />
                   </svg>
                 </Link>
+              ) : link.isCountry ? (
+                <span className="cursor-pointer flex items-center gap-1">
+                  {link.label}
+                  <svg
+                    className="w-3 h-3 transition-transform duration-300 group-hover:rotate-180"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </span>
               ) : link.link ? (
                 <Link
                   to={link.link}
@@ -111,6 +130,22 @@ const Navbar = () => {
                 </Link>
               ) : (
                 <span className="cursor-pointer">{link.label}</span>
+              )}
+              {link.dropdown && link.isCountry && (
+                <div className="absolute left-0 top-8 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 backdrop-blur-md bg-white/95 border border-gray-200 rounded-xl shadow-2xl min-w-[250px] py-4 text-sm font-normal">
+                  <div className="flex flex-col">
+                    {countriesList.map((country, idx) => (
+                      <Link
+                        to={`/country/${country.slug}`}
+                        key={idx}
+                        className="px-6 py-3 hover:bg-cyan-custom/10 transition-colors text-gray-800 hover:text-cyan-custom flex items-center gap-3 no-underline"
+                      >
+                        <span className="text-xl">{country.flag || "🌍"}</span>
+                        <span className="font-medium">{country.name}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               )}
               {link.dropdown && link.label === "Product" && (
                 <div className="absolute left-0 top-8 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 backdrop-blur-md bg-white/95 border border-gray-200 rounded-xl shadow-2xl min-w-[700px] py-6 px-6 text-sm font-normal group-hover/dropdown:block">
@@ -193,11 +228,38 @@ const Navbar = () => {
               </Link>
             </li>
             {navLinks.map((link, idx) => (
-              <li
-                key={idx}
-                className="cursor-pointer text-white/90 hover:text-cyan-custom transition-colors duration-300 py-2 px-3 rounded-lg hover:bg-cyan-custom/10"
-              >
-                {link.label}
+              <li key={idx}>
+                {link.isCountry ? (
+                  <div className="flex flex-col">
+                    <span className="cursor-pointer text-white/90 hover:text-cyan-custom transition-colors duration-300 py-2 px-3 rounded-lg hover:bg-cyan-custom/10">
+                      {link.label}
+                    </span>
+                    <div className="pl-4 mt-2 flex flex-col gap-2">
+                      {countriesList.map((country, countryIdx) => (
+                        <Link
+                          key={countryIdx}
+                          to={`/country/${country.slug}`}
+                          className="text-white/80 hover:text-cyan-custom transition-colors duration-300 py-1 px-3 rounded-lg hover:bg-cyan-custom/10 flex items-center gap-2 no-underline"
+                          onClick={() => setMobileOpen(false)}
+                        >
+                          <span className="text-lg">{country.flag || "🌍"}</span>
+                          <span>{country.name}</span>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ) : link.link ? (
+                  <Link
+                    to={link.link}
+                    className="cursor-pointer text-white/90 hover:text-cyan-custom transition-colors duration-300 py-2 px-3 rounded-lg hover:bg-cyan-custom/10 block no-underline"
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <span className="cursor-pointer text-white/90 hover:text-cyan-custom transition-colors duration-300 py-2 px-3 rounded-lg hover:bg-cyan-custom/10 block">
+                    {link.label}
+                  </span>
+                )}
               </li>
             ))}
             <li className="cursor-pointer text-white/90 hover:text-cyan-custom transition-colors duration-300 py-2 px-3 rounded-lg hover:bg-cyan-custom/10">
