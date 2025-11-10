@@ -5,91 +5,99 @@ const CustomerReviews = memo(() => {
   const reviews = [
     {
       id: 1,
-      name: "Vaping 101",
-      handle: "@Vaping101",
+      name: "Alex Thompson",
+      handle: "@VapeEnthusiast",
       comment:
-        "Wow! Fast auto-draw response and versatile DTL to MTL performance. Best device I've used!",
+        "The CP® 15K Pro is absolutely incredible! The battery life lasts me all day and the flavor quality is unmatched. Best purchase I've made this year!",
       avatar:
         "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
       rating: 5,
       verified: true,
+      product: "CP® 15K Pro",
     },
     {
       id: 2,
-      name: "Vaping With Vic",
-      handle: "@VapingWithVic",
+      name: "Sarah Mitchell",
+      handle: "@CloudChaser",
       comment:
-        "Great flavor with similar quality to disposables from XLIM GO. Highly recommended!",
-      avatar:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
-      rating: 5,
-      verified: true,
-    },
-    {
-      id: 3,
-      name: "GrimmGreen",
-      handle: "@GrimmGreen",
-      comment:
-        "OXVA Xlim Pro and Pro SQ are absolutely amazing! The flavor is incredible.",
-      avatar:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face",
-      rating: 5,
-      verified: true,
-    },
-    {
-      id: 4,
-      name: "Matt From SMM",
-      handle: "@MattFromSMM",
-      comment:
-        "Excellent flavor and easy-to-use design for a smooth vaping experience.",
+        "Just got the CP® Flow Bar 25K and I'm blown away! The draw is so smooth and the 25K puffs really do last. Highly recommend to anyone looking for quality!",
       avatar:
         "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face",
       rating: 5,
       verified: true,
+      product: "CP® Flow Bar 25K",
+    },
+    {
+      id: 3,
+      name: "James Wilson",
+      handle: "@VapeReviewer",
+      comment:
+        "CP® Crystal CP 600 has become my daily driver. The crystal clear design is stunning and the performance is top-notch. Great value for money!",
+      avatar:
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face",
+      rating: 5,
+      verified: true,
+      product: "CP® Crystal CP 600",
+    },
+    {
+      id: 4,
+      name: "Emma Davis",
+      handle: "@VapeLover",
+      comment:
+        "The CP® Crystal Pro 600 is a game changer! Premium build quality, excellent flavor production, and it looks absolutely beautiful. Worth every penny!",
+      avatar:
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
+      rating: 5,
+      verified: true,
+      product: "CP® Crystal Pro 600",
     },
     {
       id: 5,
-      name: "Fakir Liquid Squad",
-      handle: "@FakirLiquidSquad",
+      name: "Michael Brown",
+      handle: "@TechVaper",
       comment:
-        "OXVA XLIM CLASSIC EDITION has simple, timeless design with excellent flavor performance.",
-      avatar:
-        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop&crop=face",
-      rating: 5,
-      verified: true,
-    },
-    {
-      id: 6,
-      name: "Dampf Wolke",
-      handle: "@DampfWolke",
-      comment:
-        "XLIM SE offers cost-effective and eco-friendly alternative to disposable e-cigarettes.",
-      avatar:
-        "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop&crop=face",
-      rating: 5,
-      verified: true,
-    },
-    {
-      id: 7,
-      name: "FV Vape Show",
-      handle: "@FVVapeShow",
-      comment:
-        "XLIM SE's superior flavor and airflow control make it a top choice for vapers.",
-      avatar:
-        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop&crop=face",
-      rating: 5,
-      verified: true,
-    },
-    {
-      id: 8,
-      name: "VapeMaster",
-      handle: "@VapeMaster",
-      comment:
-        "Incredible battery life and smooth airflow control. Perfect for all-day use!",
+        "I've tried many devices, but the CP® 15K Pro stands out. Fast charging, long-lasting battery, and incredible flavor. This is what quality looks like!",
       avatar:
         "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
       rating: 5,
       verified: true,
+      product: "CP® 15K Pro",
+    },
+    {
+      id: 6,
+      name: "Olivia Martinez",
+      handle: "@VapeQueen",
+      comment:
+        "CP® Flow Bar 25K exceeded all my expectations! The flavor is rich and consistent throughout all 25K puffs. Best disposable I've ever used!",
+      avatar:
+        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face",
+      rating: 5,
+      verified: true,
+      product: "CP® Flow Bar 25K",
+    },
+    {
+      id: 7,
+      name: "David Lee",
+      handle: "@VapePro",
+      comment:
+        "CP® Crystal CP 600 delivers exceptional performance. The airflow control is perfect and the flavor intensity is amazing. Highly satisfied customer!",
+      avatar:
+        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop&crop=face",
+      rating: 5,
+      verified: true,
+      product: "CP® Crystal CP 600",
+    },
+    {
+      id: 8,
+      name: "Sophia Garcia",
+      handle: "@VapeStyle",
+      comment:
+        "The CP® Crystal Pro 600 is absolutely stunning! Not only does it look premium, but the performance is outstanding. Perfect for both beginners and pros!",
+      avatar:
+        "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop&crop=face",
+      rating: 5,
+      verified: true,
+      product: "CP® Crystal Pro 600",
     },
   ];
 
@@ -202,6 +210,15 @@ const CustomerReviews = memo(() => {
                   </div>
                 </div>
               </div>
+
+              {/* Product Badge */}
+              {reviews[currentIndex].product && (
+                <div className="mb-4">
+                  <span className="inline-block bg-gradient-to-r from-cyan-500 to-purple-500 text-white text-sm font-semibold px-4 py-2 rounded-full shadow-md">
+                    {reviews[currentIndex].product}
+                  </span>
+                </div>
+              )}
 
               <blockquote className="text-lg md:text-xl text-gray-700 leading-relaxed italic">
                 "{reviews[currentIndex].comment}"
