@@ -16,10 +16,10 @@ import { countriesList, countriesData } from "../data/countriesData";
 
 const Footer = () => {
   const productLinks = [
-    { name: "CP® 15K Pro", link: "/CP15k" },
-    { name: "CP® 15K Elite", link: "/CP15k" },
-    { name: "CP® Twist Pro", link: "/CPTwist" },
-    { name: "CP® Twist Elite", link: "/CPTwist" },
+    { name: "CP® 15K Pro", link: "/product/1" },
+    { name: "CP® Flow Bar 25K", link: "/product/2" },
+    { name: "CP® Crystal CP 600", link: "/product/3" },
+    { name: "CP® Crystal Pro 600", link: "/product/4" },
   ];
 
   const companyLinks = [
