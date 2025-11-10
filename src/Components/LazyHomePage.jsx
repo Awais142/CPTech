@@ -7,7 +7,7 @@ const ProductSlider = lazy(() => import("./ProductSlider"));
 const CompanyVideo = lazy(() => import("./CompanyVideo"));
 const CustomerReviews = lazy(() => import("./CustomerReviews"));
 const ParallexVideoSection = lazy(() => import("./ParallexVideoSection"));
-const VideoSlider = lazy(() => import("./VideoSlider"));
+// const VideoSlider = lazy(() => import("./VideoSlider"));
 
 // Loading components
 const HeroLoader = () => (
@@ -29,7 +29,7 @@ const LazyHomePage = memo(() => {
     hero: false,
     products: false,
     video: false,
-    videoSlider: false,
+    // videoSlider: false,
     parallax: false,
     reviews: false,
   });
@@ -70,10 +70,10 @@ const LazyHomePage = memo(() => {
         () => setLoadedSections((prev) => ({ ...prev, video: true })),
         1000
       ),
-      setTimeout(
-        () => setLoadedSections((prev) => ({ ...prev, videoSlider: true })),
-        1500
-      ),
+      // setTimeout(
+      //   () => setLoadedSections((prev) => ({ ...prev, videoSlider: true })),
+      //   1500
+      // ),
       setTimeout(
         () => setLoadedSections((prev) => ({ ...prev, parallax: true })),
         2000
@@ -113,7 +113,7 @@ const LazyHomePage = memo(() => {
       )}
 
       {/* Video Slider - Load after 1.5s */}
-      {loadedSections.videoSlider ? (
+      {/* {loadedSections.videoSlider ? (
         <Suspense
           fallback={
             <SectionLoader
@@ -129,7 +129,7 @@ const LazyHomePage = memo(() => {
           height="h-96"
           bg="bg-gradient-to-b from-gray-50 to-blue-100"
         />
-      )}
+      )} */}
 
       {/* Parallax Video Section - Load after 2s */}
       {loadedSections.parallax ? (
